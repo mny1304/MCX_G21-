@@ -1,898 +1,407 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#0a0a14">
-<meta name="description" content="MCX SuperSite OS - سیستم عامل وب چندلایه با روتر هوش مصنوعی، ساخته شده توسط متین نظافت یزدی (MCX_G21)">
-<title>MCX SuperSite OS | متین نظافت یزدی</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<style>
-:root {
-  --neon-blue: #00C8FF;
-  --neon-purple: #6A00FF;
-  --bg-dark: #0a0a14;
-  --bg-card: rgba(255, 255, 255, 0.04);
-  --bg-card-hover: rgba(255, 255, 255, 0.08);
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0b8;
-  --border: rgba(255, 255, 255, 0.1);
-  --glow-blue: 0 0 20px rgba(0, 200, 255, 0.3);
-  --glow-purple: 0 0 20px rgba(106, 0, 255, 0.3);
-  --success: #00ff9d;
-  --warning: #ffd166;
-  --danger: #ff5c7a;
-  --radius: 16px;
-  --radius-sm: 10px;
-}
+  <meta charset="UTF-8">
+  <title>MCX SuperSite OS | کریتور هوش مصنوعی</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #050816;
+      color: #f5f5f5;
+      direction: rtl;
+    }
+    /* لودینگ */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, #4f46e5, #020617);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 9999;
+      transition: opacity 0.6s ease;
+    }
+    .loader-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 6px solid rgba(255,255,255,0.1);
+      border-top-color: #38bdf8متین، گرفتم چی می‌خوای—  
+یک **فایل HTML آماده**، فارسی، دربارهٔ «کریتور AI»، با لودینگ درست، و اطلاعات تماس خودت.
 
-[data-theme="light"] {
-  --bg-dark: #f4f5fb;
-  --bg-card: rgba(0, 0, 0, 0.03);
-  --bg-card-hover: rgba(0, 0, 0, 0.06);
-  --text-primary: #171730;
-  --text-secondary: #5c6078;
-  --border: rgba(0, 0, 0, 0.08);
-  --glow-blue: 0 0 15px rgba(0, 200, 255, 0.15);
-  --glow-purple: 0 0 15px rgba(106, 0, 255, 0.15);
-}
+این هم یک `index.html` کامل که می‌تونی مستقیم بذاری تو Netlify؛  
+لودینگ بعد از ۱.۵ ثانیه میره کنار و صفحهٔ اصلی میاد:
 
-* { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Vazirmatn', sans-serif;
-  background-color: var(--bg-dark);
-  color: var(--text-primary);
-  min-height: 100vh;
-  overflow-x: hidden;
-  transition: background-color 0.4s, color 0.4s;  background-image: 
-    radial-gradient(circle at 10% 10%, rgba(106, 0, 255, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 90% 90%, rgba(0, 200, 255, 0.1) 0%, transparent 40%);
-  background-attachment: fixed;
-}
+```html
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>MCX SuperSite OS – کریتور هوش مصنوعی</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #050816;
+      color: #f5f5f5;
+      direction: rtl;
+    }
+    /* LOADER */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, #3b82f6 0, #050816 55%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+    .loader-ring {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 6px solid rgba(255,255,255,0.08);
+      border-top-color: #3b82f6;
+      border-right-color: #a855f7;
+      animation: spin 1s linear infinite;
+      margin-bottom: 18px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .loader-title {
+      font-weight: 900;
+      font-size: 20px;
+      background: linear-gradient(90deg,#3b82f6,#a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 6px;
+    }
+    .loader-sub {
+      font-size: 13px;
+      opacity: 0.85;
+    }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: linear-gradient(var(--neon-purple), var(--neon-blue)); border-radius: 10px; }
+    /* LAYOUT */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(5,8,22,0.9);
+      border-bottom: 1px solid rgba(148,163,184,0.25);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .brand-title {
+      font-weight: 800;
+      font-size: 15px;
+    }
+    .brand-sub {
+      font-size: 11px;
+      opacity: 0.7;
+    }
+    .header-actions {
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .icon-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.4);
+      background: radial-gradient(circle at top,#1f2937,#020617);
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
-/* Utility */
-.container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.items-center { align-items: center; }
-.justify-between { justify-content: space-between; }
-.gap-2 { gap: 8px; }
-.gap-4 { gap: 16px; }
-.gap-6 { gap: 24px; }
-.text-center { text-align: center; }
-.text-neon { background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
-.hidden { display: none !important; }
+    main {
+      padding: 16px 14px 80px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
 
-/* Buttons */
-.btn {
-  padding: 10px 20px; border-radius: var(--radius-sm); border: 1px solid var(--border);
-  background: var(--bg-card); color: var(--text-primary); font-family: inherit; font-weight: 700;
-  cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-}
-.btn:hover { background: var(--bg-card-hover); transform: translateY(-2px); }
-.btn-primary {
-  background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
-  border: none; color: white; box-shadow: var(--glow-purple);
-}
-.btn-primary:hover { box-shadow: 0 0 30px rgba(106, 0, 255, 0.5); }
-.btn-sm { padding: 6px 12px; font-size: 13px; }
-.btn-icon { width: 42px; height: 42px; padding: 0; border-radius: 12px; font-size: 18px; }
+    section {
+      margin-bottom: 26px;
+      border-radius: 16px;
+      border: 1px solid rgba(148,163,184,0.35);
+      background: radial-gradient(circle at top,#020617,#020617 40%,#0b1120 100%);
+      padding: 14px 14px 16px;
+    }
+    .sec-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .sec-sub {
+      font-size: 12px;
+      opacity: 0.75;
+      margin-bottom: 10px;
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .pill {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.9);
+    }
 
-/* Header */
-.header {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(10, 10, 20, 0.8); backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border); padding: 12px 0;
-}
-[data-theme="light"] .header { background: rgba(244, 245, 251, 0.85); }
-.logo { font-size: 22px; font-weight: 900; letter-spacing: -0.5px; cursor: pointer; }
-.nav-links { display: flex; gap: 8px; }
-.nav-link {
-  padding: 8px 16px; border-radius: var(--radius-sm); color: var(--text-secondary);  font-weight: 600; font-size: 14px; cursor: pointer; transition: 0.3s;
-}
-.nav-link:hover, .nav-link.active { color: var(--text-primary); background: var(--bg-card); }
+    .cta {
+      margin-top: 10px;
+      display: flex;
+      justify-content: flex-start;
+    }
+    .cta-btn {
+      border-radius: 999px;
+      padding: 8px 18px;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      background: linear-gradient(90deg,#3b82f6,#a855f7);
+      color: #f9fafb;
+      box-shadow: 0 0 25px rgba(59,130,246,0.35);
+    }
 
-/* Main Content */
-.main { padding: 40px 0 100px; min-height: calc(100vh - 80px); }
-.page { display: none; animation: fadeIn 0.5s ease; }
-.page.active { display: block; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0,1fr);
+      gap: 8px;
+      font-size: 12px;
+    }
+    .contact-item span {
+      opacity: 0.7;
+      margin-left: 4px;
+    }
+    .contact-value {
+      direction: ltr;
+      text-align: left;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
 
-/* Cards & Grid */
-.grid { display: grid; gap: 20px; }
-.grid-2 { grid-template-columns: repeat(2, 1fr); }
-.grid-3 { grid-template-columns: repeat(3, 1fr); }
-.grid-4 { grid-template-columns: repeat(4, 1fr); }
-@media (max-width: 900px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: repeat(2, 1fr); } .nav-links { display: none; } }
-@media (max-width: 600px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+    /* FLOATING BUTTON */
+    .fab {
+      position: fixed;
+      left: 14px;
+      bottom: 18px;
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: radial-gradient(circle at top,#1f2937,#020617);
+      box-shadow: 0 0 25px rgba(59,130,246,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      cursor: pointer;
+      z-index: 40;
+    }
+    .fab-menu {
+      position: fixed;
+      left: 74px;
+      bottom: 18px;
+      min-width: 210px;
+      border-radius: 16px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.96);
+      padding: 10px 10px 8px;
+      font-size: 11px;
+      display: none;
+      z-index: 39;
+    }
+    .fab-menu.visible {
+      display: block;
+    }
+    .fab-menu-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .fab-menu-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .fab-chip {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(17,24,39,0.95);
+    }
 
-.card {
-  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 24px; transition: all 0.3s ease; position: relative; overflow: hidden;
-}
-.card:hover { border-color: rgba(106, 0, 255, 0.4); transform: translateY(-4px); box-shadow: var(--glow-purple); }
-
-/* Hero Section */
-.hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; padding: 40px 0 60px; }
-@media (max-width: 800px) { .hero { grid-template-columns: 1fr; text-align: center; } .hero-visual { order: -1; } }
-.hero h1 { font-size: clamp(32px, 5vw, 56px); font-weight: 900; line-height: 1.2; margin-bottom: 20px; }
-.hero p { color: var(--text-secondary); font-size: 16px; line-height: 1.8; margin-bottom: 30px; max-width: 550px; }
-@media (max-width: 800px) { .hero p { margin: 0 auto 30px; } }
-
-.hero-visual { position: relative; width: 100%; aspect-ratio: 1; max-width: 400px; margin: 0 auto; }
-.orb {
-  position: absolute; inset: 10%; border-radius: 50%;
-  background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
-  filter: blur(40px); opacity: 0.6; animation: float 6s ease-in-out infinite;
-}
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-.orb-core {
-  position: absolute; inset: 20%; border-radius: 50%; background: var(--bg-dark);
-  border: 1px solid var(--border); display: grid; place-items: center;
-  box-shadow: inset 0 0 40px rgba(106, 0, 255, 0.2); z-index: 2;
-}
-.orb-core::before {
-  content: ''; position: absolute; inset: -2px; border-radius: 50%;
-  background: conic-gradient(from 0deg, var(--neon-purple), var(--neon-blue), var(--neon-purple));
-  filter: blur(8px); opacity: 0.7; z-index: -1; animation: spin 8s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-.orb-text { font-size: 42px; font-weight: 900; background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-/* Stats */
-.stat-card { text-align: center; padding: 20px; }
-.stat-value { font-size: 28px; font-weight: 900; color: var(--neon-blue); margin-bottom: 4px; }
-.stat-label { font-size: 13px; color: var(--text-secondary); }
-
-/* Samples */
-.sample-card { padding: 0; overflow: hidden; }
-.sample-img { height: 160px; background: linear-gradient(135deg, #1a1a2e, #16213e); display: grid; place-items: center; font-size: 40px; position: relative; }
-.sample-badge { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; border: 1px solid var(--border); }
-.sample-body { padding: 16px; }
-.sample-title { font-size: 15px; font-weight: 800; margin-bottom: 8px; }
-.sample-meta { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; }
-.sample-price { color: var(--neon-blue); font-weight: 900; font-size: 16px; }
-
-/* FAQ */
-.faq-item { border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 10px; overflow: hidden; }
-.faq-q { padding: 16px; cursor: pointer; font-weight: 700; display: flex; justify-content: space-between; align-items: center; background: var(--bg-card); transition: 0.3s; }
-.faq-q:hover { background: var(--bg-card-hover); }
-.faq-a { padding: 0 16px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; color: var(--text-secondary); font-size: 14px; line-height: 1.8; }
-.faq-item.open .faq-a { max-height: 200px; padding: 0 16px 16px; }
-.faq-item.open .faq-q { color: var(--neon-blue); }
-
-/* Side Panels */
-.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 200; opacity: 0; pointer-events: none; transition: 0.3s; }
-.overlay.active { opacity: 1; pointer-events: auto; }
-.panel {
-  position: fixed; top: 0; bottom: 0; width: 360px; max-width: 90vw; background: var(--bg-dark);
-  border: 1px solid var(--border); z-index: 210; padding: 24px; overflow-y: auto;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.panel-right { right: 0; transform: translateX(100%); border-left: 1px solid var(--border); }
-.panel-left { left: 0; transform: translateX(-100%); border-right: 1px solid var(--border); }
-.panel.active { transform: translateX(0); }
-.panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
-.panel-title { font-size: 18px; font-weight: 900; }
-.menu-item {
-  display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: var(--radius-sm);
-  background: var(--bg-card); border: 1px solid var(--border); margin-bottom: 10px; cursor: pointer; transition: 0.3s;
-}
-.menu-item:hover { border-color: var(--neon-purple); background: var(--bg-card-hover); }
-.menu-icon { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue)); display: grid; place-items: center; color: white; font-size: 16px; flex-shrink: 0; }
-.menu-text b { display: block; font-size: 14px; font-weight: 700; margin-bottom: 2px; }
-.menu-text span { font-size: 12px; color: var(--text-secondary); }
-
-/* Floating Action Button (FAB) */
-.fab {
-  position: fixed; bottom: 24px; left: 24px; z-index: 150; width: 60px; height: 60px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue)); color: white;
-  display: grid; place-items: center; font-size: 24px; cursor: pointer; box-shadow: 0 10px 30px rgba(106, 0, 255, 0.4);  transition: 0.3s; border: none;
-}
-.fab:hover { transform: scale(1.1) rotate(90deg); }
-.fab-menu {
-  position: fixed; bottom: 100px; left: 24px; z-index: 150; width: 320px; max-height: 60vh; overflow-y: auto;
-  background: var(--bg-dark); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5); opacity: 0; pointer-events: none; transform: translateY(20px) scale(0.95); transition: 0.3s;
-}
-.fab-menu.active { opacity: 1; pointer-events: auto; transform: translateY(0) scale(1); }
-.fab-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-.fab-item {
-  display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 4px;
-  border-radius: var(--radius-sm); background: var(--bg-card); border: 1px solid var(--border);
-  cursor: pointer; transition: 0.2s; font-size: 11px; font-weight: 700; color: var(--text-secondary);
-}
-.fab-item:hover { background: var(--bg-card-hover); color: var(--neon-blue); border-color: var(--neon-blue); }
-.fab-item span { font-size: 20px; }
-
-/* AI Chat */
-.ai-chat {
-  position: fixed; bottom: 24px; right: 24px; z-index: 140; width: 360px; max-width: calc(100vw - 48px);
-  background: var(--bg-dark); border: 1px solid var(--border); border-radius: var(--radius);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5); display: flex; flex-direction: column; overflow: hidden;
-  transform: translateY(20px) scale(0.95); opacity: 0; pointer-events: none; transition: 0.3s;
-}
-.ai-chat.active { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
-.chat-header { padding: 16px; background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue)); color: white; display: flex; align-items: center; gap: 12px; }
-.chat-body { height: 320px; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
-.msg { max-width: 85%; padding: 10px 14px; border-radius: 14px; font-size: 13px; line-height: 1.7; animation: popIn 0.3s ease; }
-@keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-.msg.bot { background: var(--bg-card); border: 1px solid var(--border); align-self: flex-start; border-bottom-right-radius: 4px; }
-.msg.user { background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue)); color: white; align-self: flex-end; border-bottom-left-radius: 4px; }
-.chat-input-area { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--border); }
-.chat-input { flex: 1; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 14px; color: var(--text-primary); font-family: inherit; }
-.chat-input:focus { border-color: var(--neon-blue); }
-
-/* User Panel Specifics */
-.user-hero { display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center; padding: 30px; }
-@media (max-width: 600px) { .user-hero { grid-template-columns: 1fr; text-align: center; } }
-.user-avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue)); display: grid; place-items: center; font-size: 28px; font-weight: 900; color: white; box-shadow: var(--glow-purple); }
-.badge { display: inline-flex; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; background: rgba(0, 200, 255, 0.15); color: var(--neon-blue); border: 1px solid rgba(0, 200, 255, 0.3); margin-left: 6px; }
-.wallet-card { background: linear-gradient(135deg, #1a1a2e, #16213e); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; position: relative; overflow: hidden; }
-.wallet-card::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(106, 0, 255, 0.2) 0%, transparent 70%); }
-
-/* Toast */
-.toast {
-  position: fixed; top: 90px; left: 50%; transform: translateX(-50%) translateY(-20px);
-  background: var(--bg-dark); border: 1px solid var(--neon-blue); color: var(--text-primary);
-  padding: 12px 24px; border-radius: var(--radius-sm); font-weight: 700; font-size: 14px; z-index: 300;
-  opacity: 0; pointer-events: none; transition: 0.3s; box-shadow: var(--glow-blue);}
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-/* Footer */
-.footer { border-top: 1px solid var(--border); padding: 60px 0 30px; margin-top: 60px; background: rgba(0,0,0,0.2); }
-.footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-bottom: 40px; }
-@media (max-width: 800px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
-.footer h4 { font-size: 16px; font-weight: 900; margin-bottom: 16px; color: var(--neon-blue); }
-.footer a, .footer p { display: block; color: var(--text-secondary); font-size: 13px; margin-bottom: 10px; transition: 0.3s; text-decoration: none; }
-.footer a:hover { color: var(--text-primary); padding-right: 5px; }
-.footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 12px; }
-
-/* Loader */
-.loader {
-  position: fixed; inset: 0; background: var(--bg-dark); z-index: 9999; display: grid; place-items: center; transition: opacity 0.5s;
-}
-.loader.hidden { opacity: 0; pointer-events: none; }
-.loader-spinner {
-  width: 60px; height: 60px; border-radius: 50%; border: 3px solid var(--border);
-  border-top-color: var(--neon-blue); border-right-color: var(--neon-purple);
-  animation: spin 1s linear infinite;
-}
-</style>
+    footer {
+      padding: 10px 14px 16px;
+      font-size: 11px;
+      opacity: 0.7;
+      text-align: center;
+    }
+  </style>
 </head>
-<body data-theme="dark">
+<body>
 
-<!-- Loader -->
-<div class="loader" id="loader">
-  <div style="text-align: center;">
-    <div class="loader-spinner" style="margin: 0 auto 20px;"></div>
-    <div class="text-neon" style="font-size: 24px; font-weight: 900;">MCX SuperSite OS</div>
-    <div style="color: var(--text-secondary); font-size: 13px; margin-top: 8px;">در حال راه‌اندازی هسته هوش مصنوعی...</div>
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="loader-ring"></div>
+    <div class="loader-title">MCX SuperSite OS</div>
+    <div class="loader-sub">در حال راه‌اندازی هستهٔ هوش مصنوعی...</div>
   </div>
-</div>
 
-<!-- Toast -->
-<div class="toast" id="toast"></div>
-
-<!-- Header -->
-<header class="header">
-  <div class="container flex justify-between items-center">
-    <div class="flex items-center gap-4">
-      <button class="btn btn-icon" onclick="togglePanel('left')" title="مرکز کنترل سیستم">☰</button>
-      <div class="logo" onclick="navigate('landing')"><span class="text-neon">MCX</span> OS</div>
+  <!-- HEADER -->
+  <header>
+    <div class="brand">
+      <div class="brand-title">MCX SuperSite OS</div>
+      <div class="brand-sub">سیستم‌عامل وب برای کریتورهای هوش مصنوعی</div>
     </div>
-    
-    <nav class="nav-links">
-      <div class="nav-link active" onclick="navigate('landing')" data-page="landing">خانه</div>
-      <div class="nav-link" onclick="navigate('dashboard')" data-page="dashboard">داشبورد</div>      <div class="nav-link" onclick="navigate('commerce')" data-page="commerce">فروشگاه</div>
-      <div class="nav-link" onclick="navigate('user')" data-page="user">پنل کاربری</div>
-    </nav>
-
-    <div class="flex items-center gap-2">
-      <button class="btn btn-icon" onclick="toggleCart()" title="سبد خرید">🛒</button>
-      <button class="btn btn-icon" onclick="togglePanel('right')" title="مرکز تعامل کاربر">⋮</button>
+    <div class="header-actions">
+      <button class="icon-btn" title="منوی سیستم">☰</button>
+      <button class="icon-btn" title="منوی کاربر">⋮</button>
     </div>
-  </div>
-</header>
+  </header>
 
-<!-- Main Content -->
-<main class="main">
-  <div class="container">
-
-    <!-- PAGE: LANDING -->
-    <section id="page-landing" class="page active">
-      <div class="hero">
-        <div>
-          <div class="badge" style="margin-bottom: 16px; font-size: 13px; padding: 6px 14px;">🧠 سیستم‌عامل وب نسل جدید • MCX_G21</div>
-          <h1>به <span class="text-neon">MCX SuperSite OS</span><br>خوش آمدید</h1>
-          <p>این یک وب‌سایت معمولی نیست؛ یک سیستم‌عامل وب چندلایه با موتور هوش مصنوعی داخلی است که توسط <b>متین نظافت یزدی</b> طراحی شده. تجربه‌ای پویا، مقیاس‌پذیر و ماژولار.</p>
-          <div class="flex gap-4" style="flex-wrap: wrap;">
-            <button class="btn btn-primary" onclick="navigate('dashboard')">ورود به داشبورد 🚀</button>
-            <button class="btn" onclick="navigate('commerce')">مشاهده نمونه‌ها 🛍</button>
-          </ized>
-        </div>
-        <div class="hero-visual">
-          <div class="orb"></div>
-          <div class="orb-core"><div class="orb-text">MCX</div></div>
-        </div>
+  <!-- MAIN -->
+  <main>
+    <!-- LANDING / معرفی -->
+    <section>
+      <div class="sec-title">کریتور هوش مصنوعی متین نظافت یزدی</div>
+      <div class="sec-sub">
+        این سوپرسایت برای معرفی اکوسیستم MCX و سرویس‌های کریتور AI طراحی شده است؛
+        تمرکز اصلی روی ساخت سیستم‌ها، برندها و سرویس‌های هوش مصنوعی در مقیاس بالا است.
       </div>
-
-      <!-- Stats -->
-      <div class="grid grid-4" style="margin-bottom: 60px;">
-        <div class="card stat-card"><div class="stat-value">+۱۲۰</div><div class="stat-label">پروژه موفق</div></div>
-        <div class="card stat-card"><div class="stat-value">۹۸٪</div><div class="stat-label">رضایت مشتریان</div></div>
-        <div class="card stat-card"><div class="stat-value">۲۱</div><div class="stat-label">مدل هوش مصنوعی</div></div>
-        <div class="card stat-card"><div class="stat-value">۲۴/۷</div><div class="stat-label">پشتیبانی هوشمند</div></div>
+      <div class="pill-row">
+        <div class="pill">MCX-G21 – نسل ۲۱ اکوسیستم</div>
+        <div class="pill">طراحی سوپرسایت و سیستم‌عامل وب</div>
+        <div class="pill">ساخت سرویس‌های هوش مصنوعی سفارشی</div>
+        <div class="pill">معماری اکوسیستم دیجیتال</div>
       </div>
-
-      <!-- MCX-G21 Intro -->
-      <div class="card" style="margin-bottom: 60px; border-color: var(--neon-purple);">
-        <div class="flex gap-6" style="flex-wrap: wrap; align-items: center;">
-          <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue)); display: grid; place-items: center; font-size: 36px; font-weight: 900; color: white; flex-shrink: 0;">م‌ن</div>
-          <div style="flex: 1;">
-            <h2 style="font-size: 24px; font-weight: 900; margin-bottom: 8px;">کریتور AI: متین نظافت یزدی</h2>
-            <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px;">
-              بنیان‌گذار و توسعه‌دهنده MCX. موتور <span class="text-neon">MCX-G21</span> نسل بیست‌ویکم روترهای هوشمند است که هر درخواست شما را تحلیل، دسته‌بندی و به بهترین مدل و صفحه مسیردهی می‌کند.
-            </p>            <div class="flex gap-2" style="flex-wrap: wrap;">
-              <a href="mailto:mny13041399@GMAIL.com" class="btn btn-sm">📧 mny13041399@GMAIL.com</a>
-              <a href="tel:09155004906" class="btn btn-sm">📞 09155004906</a>
-              <a href="https://t.me/MCX_G21" target="_blank" class="btn btn-sm">✈️ تلگرام: @MCX_G21</a>
-              <a href="https://rubika.ir/MCX_G21" target="_blank" class="btn btn-sm">🟣 روبیکا: @MCX_G21</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Top Samples -->
-      <div style="margin-bottom: 60px;">
-        <div class="flex justify-between items-center" style="margin-bottom: 24px;">
-          <h2 style="font-size: 24px; font-weight: 900;">نمونه‌های برتر</h2>
-          <button class="btn btn-sm" onclick="navigate('commerce')">مشاهده همه ←</button>
-        </div>
-        <div class="grid grid-4" id="landing-samples"></div>
-      </div>
-
-      <!-- Final CTA -->
-      <div class="card text-center" style="padding: 60px 20px; background: linear-gradient(135deg, rgba(106,0,255,0.1), rgba(0,200,255,0.1)); border-color: var(--neon-purple);">
-        <h2 style="font-size: 32px; font-weight: 900; margin-bottom: 16px;">آیا آماده‌اید؟ 🌌</h2>
-        <p style="color: var(--text-secondary); margin-bottom: 30px;">وارد اکوسیستم MCX شوید و قدرت سیستم‌عامل وب هوشمند را تجربه کنید.</p>
-        <button class="btn btn-primary" style="padding: 14px 32px; font-size: 16px;" onclick="navigate('dashboard')">بزن بریم! 🚀</button>
+      <div class="cta">
+        <button class="cta-btn">شروع همکاری با کریتور AI</button>
       </div>
     </section>
 
-    <!-- PAGE: DASHBOARD -->
-    <section id="page-dashboard" class="page">
-      <div style="margin-bottom: 30px;">
-        <h1 style="font-size: 28px; font-weight: 900;">👋 سلام، به داشبورد OS خوش آمدی</h1>
-        <p style="color: var(--text-secondary); margin-top: 8px;">همه‌چیز در یک نگاه • <span id="current-date"></span></p>
+    <!-- خدمات کریتور AI -->
+    <section>
+      <div class="sec-title">خدمات کریتور هوش مصنوعی</div>
+      <div class="sec-sub">
+        متین نظافت یزدی به‌عنوان کریتور AI، روی طراحی و ساخت سیستم‌های هوشمند، سوپرسایت‌ها،
+        داشبوردهای تحلیلی و موتورهای تجارت هوشمند برای برندها و کسب‌وکارها تمرکز دارد.
       </div>
+      <ul style="font-size: 12px; margin: 0; padding-right: 18px;">
+        <li>طراحی و پیاده‌سازی سوپرسایت‌ها و سیستم‌عامل‌های وب مبتنی بر هوش مصنوعی</li>
+        <li>ساخت موتورهای پیشنهاددهنده، روتِر هوشمند و دستیارهای AI برای کسب‌وکارها</li>
+        <li>معماری اکوسیستم دیجیتال و طراحی لایه‌های سرویس، کاربر و تحلیل</li>
+        <li>طراحی رابط کاربری نئونی و تجربهٔ کاربری برای سیستم‌های هوشمند</li>
+      </ul>
+    </section>
 
-      <div class="card" style="margin-bottom: 30px; padding: 16px;">
-        <div class="flex gap-2" style="align-items: center;">
-          <input type="text" class="chat-input" placeholder="🔍 جستجوی هوشمند در کل سیستم (روتر AI تحلیل می‌کند)..." id="dash-search" onkeypress="if(event.key==='Enter') handleSearch(this.value)">
-          <button class="btn btn-primary" onclick="handleSearch(document.getElementById('dash-search').value)">جستجو</button>
+    <!-- اطلاعات تماس -->
+    <section>
+      <div class="sec-title">اطلاعات تماس و ارتباط</div>
+      <div class="sec-sub">
+        برای همکاری، سفارش پروژه یا دریافت مشاوره در حوزهٔ کریتور هوش مصنوعی و اکوسیستم MCX،
+        از راه‌های زیر می‌توانید در ارتباط باشید:
+      </div>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <span>ایمیل:</span>
+          <div class="contact-value">mny13041399@gmail.com</div>
         </div>
-      </div>
-
-      <div class="flex gap-2" style="flex-wrap: wrap; margin-bottom: 30px;">
-        <button class="btn btn-sm" onclick="navigate('commerce')">🛒 فروشگاه</button>
-        <button class="btn btn-sm" onclick="navigate('user')">👤 پروفایل</button>
-        <button class="btn btn-sm" onclick="toggleAI()">🤖 دستیار AI</button>
-        <button class="btn btn-sm" onclick="togglePanel('left')">⚙️ تنظیمات سیستم</button>
-      </div>
-
-      <div class="grid grid-4" style="margin-bottom: 40px;">
-        <div class="card stat-card"><div class="stat-value">۱۲,۴۸۵</div><div class="stat-label">بازدید کل</div></div>        <div class="card stat-card"><div class="stat-value">۲۴</div><div class="stat-label">سفارش فعال</div></div>
-        <div class="card stat-card"><div class="stat-value">۲.۴M</div><div class="stat-label">موجودی کیف (تومان)</div></div>
-        <div class="card stat-card"><div class="stat-value">PRO</div><div class="stat-label">سطح کاربری</div></div>
-      </div>
-
-      <div class="grid grid-2" style="margin-bottom: 40px;">
-        <div class="card">
-          <h3 style="font-weight: 900; margin-bottom: 16px;">📊 عملکرد هفتگی</h3>
-          <div style="display: flex; align-items: flex-end; gap: 8px; height: 120px; padding-top: 20px;">
-            <div style="flex:1; background: linear-gradient(to top, var(--neon-purple), var(--neon-blue)); border-radius: 6px 6px 0 0; height: 40%;"></div>
-            <div style="flex:1; background: linear-gradient(to top, var(--neon-purple), var(--neon-blue)); border-radius: 6px 6px 0 0; height: 65%;"></div>
-            <div style="flex:1; background: linear-gradient(to top, var(--neon-purple), var(--neon-blue)); border-radius: 6px 6px 0 0; height: 50%;"></div>
-            <div style="flex:1; background: linear-gradient(to top, var(--neon-purple), var(--neon-blue)); border-radius: 6px 6px 0 0; height: 85%;"></div>
-            <div style="flex:1; background: linear-gradient(to top, var(--neon-purple), var(--neon-blue)); border-radius: 6px 6px 0 0; height: 70%;"></div>
-            <div style="flex:1; background: linear-gradient(to top, var(--neon-purple), var(--neon-blue)); border-radius: 6px 6px 0 0; height: 95%;"></div>
-            <div style="flex:1; background: linear-gradient(to top, var(--neon-purple), var(--neon-blue)); border-radius: 6px 6px 0 0; height: 100%;"></div>
-          </div>
-          <div class="flex justify-between" style="margin-top: 8px; font-size: 11px; color: var(--text-secondary);">
-            <span>ش</span><span>ی</span><span>د</span><span>س</span><span>چ</span><span>پ</span><span>ج</span>
-          </div>
+        <div class="contact-item">
+          <span>شماره تماس:</span>
+          <div class="contact-value">09155004906</div>
         </div>
-        <div class="card">
-          <h3 style="font-weight: 900; margin-bottom: 16px;">🏆 سفارش ویژه هفته</h3>
-          <div style="background: var(--bg-card); border-radius: 12px; padding: 16px; border: 1px solid var(--border);">
-            <div class="flex justify-between items-center" style="margin-bottom: 12px;">
-              <b>پکیج طلایی MCX</b>
-              <span class="badge">در حال پردازش</span>
-            </div>
-            <div style="height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; margin-bottom: 12px;">
-              <div style="width: 60%; height: 100%; background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));"></div>
-            </div>
-            <div class="flex justify-between" style="font-size: 12px; color: var(--text-secondary);">
-              <span>مرحله ۲ از ۴</span>
-              <span>۱,۸۹۰,۰۰۰ تومان</span>
-            </div>
-          </div>
+        <div class="contact-item">
+          <span>نام کامل:</span>
+          <div class="contact-value" style="direction: rtl; text-align: right;">متین نظافت یزدی</div>
         </div>
-      </div>
-
-      <div class="card" style="margin-bottom: 40px;">
-        <h3 style="font-weight: 900; margin-bottom: 16px;">🕘 تاریخچه جستجو</h3>
-        <div class="flex gap-2" style="flex-wrap: wrap;" id="search-history">
-          <span class="badge" style="cursor: pointer;" onclick="handleSearch('هوش مصنوعی')">هوش مصنوعی</span>
-          <span class="badge" style="cursor: pointer;" onclick="handleSearch('قالب سایت')">قالب سایت</span>
-          <span class="badge" style="cursor: pointer;" onclick="handleSearch('MCX_G21')">MCX_G21</span>
+        <div class="contact-item">
+          <span>تلگرام:</span>
+          <div class="contact-value">@MCX_G21</div>
+        </div>
+        <div class="contact-item">
+          <span>روبیکا:</span>
+          <div class="contact-value">@MCX_G21</div>
         </div>
       </div>
     </section>
 
-    <!-- PAGE: COMMERCE -->    <section id="page-commerce" class="page">
-      <div style="margin-bottom: 30px;">
-        <h1 style="font-size: 28px; font-weight: 900;">🛍️ موتور تجارت هوشمند</h1>
-        <p style="color: var(--text-secondary); margin-top: 8px;">جستجو، فیلتر و خرید نمونه‌ها با قدرت روتر AI</p>
-      </div>
-
-      <div class="card" style="margin-bottom: 24px; padding: 16px;">
-        <input type="text" class="chat-input" placeholder="جستجو در نمونه‌ها، کد محصول یا دسته‌بندی..." id="shop-search" oninput="filterSamples()">
-      </div>
-
-      <div class="flex gap-2" style="flex-wrap: wrap; margin-bottom: 24px;" id="category-tabs">
-        <button class="btn btn-sm btn-primary" onclick="setCategory('all', this)">همه</button>
-        <button class="btn btn-sm" onclick="setCategory('web', this)">طراحی وب</button>
-        <button class="btn btn-sm" onclick="setCategory('ai', this)">هوش مصنوعی</button>
-        <button class="btn btn-sm" onclick="setCategory('app', this)">اپلیکیشن</button>
-        <button class="btn btn-sm" onclick="setCategory('ui', this)">رابط کاربری</button>
-      </div>
-
-      <div class="grid grid-4" id="shop-samples"></div>
-    </section>
-
-    <!-- PAGE: USER -->
-    <section id="page-user" class="page">
-      <div class="card user-hero" style="margin-bottom: 30px;">
-        <div class="user-avatar">م‌ن</div>
-        <div>
-          <h2 style="font-size: 24px; font-weight: 900;">متین نظافت یزدی</h2>
-          <p style="color: var(--text-secondary); margin-top: 4px;">MCX_G21 • بنیان‌گذار و توسعه‌دهنده</p>
-          <div style="margin-top: 12px;">
-            <span class="badge">PRO</span>
-            <span class="badge" style="background: rgba(0,255,157,0.15); color: var(--success); border-color: rgba(0,255,157,0.3);">تأیید شده ✓</span>
-            <span class="badge" style="background: rgba(255,209,102,0.15); color: var(--warning); border-color: rgba(255,209,102,0.3);">سطح طلایی</span>
-          </div>
-        </div>
-        <button class="btn btn-primary" onclick="showToast('پروفایل با موفقیت ذخیره شد')">ویرایش پروفایل</button>
-      </div>
-
-      <div class="grid grid-2" style="margin-bottom: 30px;">
-        <div class="card">
-          <h3 style="font-weight: 900; margin-bottom: 16px;">📧 اطلاعات تماس کریتور</h3>
-          <div style="line-height: 2.2; font-size: 14px;">
-            <div><b>ایمیل:</b> <a href="mailto:mny13041399@GMAIL.com" style="color: var(--neon-blue);">mny13041399@GMAIL.com</a></div>
-            <div><b>تلفن:</b> <a href="tel:09155004906" style="color: var(--neon-blue);">09155004906</a></div>
-            <div><b>تلگرام:</b> <a href="https://t.me/MCX_G21" target="_blank" style="color: var(--neon-blue);">@MCX_G21</a></div>
-            <div><b>روبیکا:</b> <a href="https://rubika.ir/MCX_G21" target="_blank" style="color: var(--neon-blue);">@MCX_G21</a></div>
-          </div>
-        </div>
-        <div class="wallet-card">
-          <div style="position: relative; z-index: 1;">
-            <div style="font-size: 13px; opacity: 0.8;">موجودی کیف پول</div>            <div style="font-size: 32px; font-weight: 900; margin: 8px 0;">۲,۴۵۰,۰۰۰ <span style="font-size: 16px;">تومان</span></div>
-            <div style="font-size: 14px; letter-spacing: 2px; opacity: 0.7; margin-top: 20px;">MCX •••• •••• •••• ۲۱۲۱</div>
-            <div class="flex gap-2" style="margin-top: 20px;">
-              <button class="btn btn-sm" style="background: rgba(255,255,255,0.1); color: white; border: none;" onclick="showToast('درگاه پرداخت به‌زودی فعال می‌شود')">+ افزایش موجودی</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid grid-2" style="margin-bottom: 30px;">
-        <div class="card">
-          <h3 style="font-weight: 900; margin-bottom: 16px;">📱 دستگاه‌های فعال</h3>
-          <div class="menu-item" style="margin-bottom: 8px;">
-            <div class="menu-icon">💻</div>
-            <div class="menu-text"><b>لپ‌تاپ اصلی</b><span>Chrome • Windows • IP: 192.168.1.10</span></div>
-            <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--success); box-shadow: 0 0 10px var(--success);"></div>
-          </div>
-          <div class="menu-item" style="margin-bottom: 8px;">
-            <div class="menu-icon">📱</div>
-            <div class="menu-text"><b>گوشی موبایل</b><span>Safari • iOS • IP: 192.168.1.25</span></div>
-            <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--success); box-shadow: 0 0 10px var(--success);"></div>
-          </div>
-        </div>
-        <div class="card">
-          <h3 style="font-weight: 900; margin-bottom: 16px;">🎨 شخصی‌سازی سیستم</h3>
-          <div class="menu-item" onclick="toggleTheme()" style="cursor: pointer;">
-            <div class="menu-icon">🎨</div>
-            <div class="menu-text"><b>تغییر تم</b><span>تغییر بین حالت تاریک و روشن</span></div>
-            <span id="theme-indicator" style="font-size: 12px; color: var(--neon-blue);">تاریک</span>
-          </div>
-          <div class="menu-item" onclick="showToast('حالت توسعه‌دهنده فعال شد')">
-            <div class="menu-icon">💻</div>
-            <div class="menu-text"><b>حالت کاربری</b><span>تغییر بین عادی، توسعه‌دهنده و مدیر</span></div>
-            <span style="font-size: 12px; color: var(--neon-blue);">PRO</span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <h3 style="font-weight: 900; margin-bottom: 16px;">📦 وضعیت سفارش‌ها</h3>
-        <div class="card" style="padding: 16px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
-          <div>
-            <div style="font-weight: 800; margin-bottom: 4px;">#MCX-2101 • پکیج طلایی MCX</div>
-            <div style="font-size: 12px; color: var(--text-secondary);">۱۴۰۳/۰۸/۱۵</div>
-          </div>
-          <div class="flex items-center gap-4">
-            <span class="badge" style="background: rgba(0,255,157,0.15); color: var(--success);">تحویل شده</span>
-            <span style="font-weight: 900;">۱,۸۹۰,۰۰۰ ت</span>
-          </div>
-        </div>        <div class="card" style="padding: 16px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
-          <div>
-            <div style="font-weight: 800; margin-bottom: 4px;">#MCX-2102 • قالب فروشگاهی پیشرفته</div>
-            <div style="font-size: 12px; color: var(--text-secondary);">۱۴۰۳/۰۸/۲۰</div>
-          </div>
-          <div class="flex items-center gap-4">
-            <span class="badge" style="background: rgba(255,209,102,0.15); color: var(--warning);">در حال پردازش</span>
-            <span style="font-weight: 900;">۸۵۰,۰۰۰ ت</span>
-          </div>
-        </div>
+    <!-- بخش کوتاه درباره MCX-G21 -->
+    <section>
+      <div class="sec-title">MCX-G21 چیست؟</div>
+      <div class="sec-sub">
+        MCX-G21 نسل جدیدی از اکوسیستم‌های دیجیتال است که هدف آن ساخت میلیون‌ها سرویس واقعی
+        بر پایهٔ هوش مصنوعی، سوپرسایت‌ها و سیستم‌های عامل وب است؛ این سوپرسایت اولین لایهٔ
+        معرفی و دسترسی به این اکوسیستم است.
       </div>
     </section>
+  </main>
 
-  </div>
-</main>
-
-<!-- Footer -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <h4>MCX SuperSite OS</h4>
-        <p>سیستم‌عامل وب هوشمند نسل جدید، طراحی‌شده توسط متین نظافت یزدی. پویا، مقیاس‌پذیر و ماژولار.</p>
-        <p style="margin-top: 12px; font-weight: 700; color: var(--text-primary);">MCX_G21 • نسخه ۱.۰</p>
-      </div>
-      <div>
-        <h4>دسترسی سریع</h4>
-        <a href="#" onclick="navigate('landing')">صفحه اصلی</a>
-        <a href="#" onclick="navigate('dashboard')">داشبورد OS</a>
-        <a href="#" onclick="navigate('commerce')">موتور تجارت</a>
-        <a href="#" onclick="navigate('user')">پنل کاربری</a>
-      </div>
-      <div>
-        <h4>ارتباط با کریتور</h4>
-        <a href="mailto:mny13041399@GMAIL.com">📧 mny13041399@GMAIL.com</a>
-        <a href="tel:09155004906">📞 09155004906</a>
-        <a href="https://t.me/MCX_G21" target="_blank">✈️ تلگرام: @MCX_G21</a>
-        <a href="https://rubika.ir/MCX_G21" target="_blank">🟣 روبیکا: @MCX_G21</a>
-      </div>
-      <div>
-        <h4>اطلاعات حقوقی</h4>
-        <a href="#" onclick="showToast('صفحه قوانین به‌زودی اضافه می‌شود')">قوانین و شرایط</a>
-        <a href="#" onclick="showToast('صفحه حریم خصوصی به‌زودی اضافه می‌شود')">حریم خصوصی</a>
-        <a href="#" onclick="showToast('صفحه مجوزها به‌زودی اضافه می‌شود')">مجوزها و کپی‌رایت</a>
-      </div>
+  <!-- FLOATING BUTTON -->
+  <button class="fab" id="fab">⚡</button>
+  <div class="fab-menu" id="fab-menu">
+    <div class="fab-menu-title">دسترسی سریع MCX</div>
+    <div class="fab-menu-list">
+      <div class="fab-chip">زبان: فارسی</div>
+      <div class="fab-chip">حالت: کریتور AI</div>
+      <div class="fab-chip">کیفیت نمایش: نئونی</div>
+      <div class="fab-chip">شروع هستهٔ MCX AI</div>
+      <div class="fab-chip">پشتیبانی و ارتباط</div>
+      <div class="fab-chip">نمایش اطلاعات تماس</div>
     </div>
-    <div class="footer-bottom">
-      تمامی حقوق مادی و معنوی این سیستم متعلق به <b>متین نظافت یزدی (MCX_G21)</b> است. © ۱۴۰۳
-    </div>
-  </div></footer>
-
-<!-- Side Panels -->
-<div class="overlay" id="overlay" onclick="closeAllPanels()"></div>
-
-<!-- Left Panel: System Control -->
-<div class="panel panel-left" id="panel-left">
-  <div class="panel-header">
-    <div class="panel-title">☰ مرکز کنترل سیستم</div>
-    <button class="btn btn-icon btn-sm" onclick="closeAllPanels()">✕</button>
   </div>
-  <div class="menu-item" onclick="showToast('زبان سیستم: فارسی')"><div class="menu-icon">🌐</div><div class="menu-text"><b>زبان</b><span>Language</span></div><div style="margin-right: auto; font-size: 12px; color: var(--neon-blue);">فارسی</div></div>
-  <div class="menu-item" onclick="toggleTheme()"><div class="menu-icon">🎨</div><div class="menu-text"><b>تم</b><span>Theme</span></div><div style="margin-right: auto; font-size: 12px; color: var(--neon-blue);" id="panel-theme-val">تاریک</div></div>
-  <div class="menu-item" onclick="showToast('حالت کاربری: PRO')"><div class="menu-icon">👥</div><div class="menu-text"><b>حالت کاربری</b><span>User Mode</span></div><div style="margin-right: auto; font-size: 12px; color: var(--neon-blue);">PRO</div></div>
-  <div class="menu-item" onclick="showToast('کیفیت نمایش: HD')"><div class="menu-icon">📺</div><div class="menu-text"><b>کیفیت نمایش</b><span>Display Quality</span></div><div style="margin-right: auto; font-size: 12px; color: var(--neon-blue);">HD</div></div>
-  <div class="menu-item"><div class="menu-icon">🕐</div><div class="menu-text"><b>زمان جهانی</b><span>Global Time</span></div><div style="margin-right: auto; font-size: 12px; color: var(--neon-blue);" id="global-time">--:--</div></div>
-  <div class="menu-item"><div class="menu-icon">🌍</div><div class="menu-text"><b>آدرس IP</b><span>IP Address</span></div><div style="margin-right: auto; font-size: 12px; color: var(--neon-blue);">192.168.1.10</div></div>
-  <div class="menu-item"><div class="menu-icon">⚡</div><div class="menu-text"><b>عملکرد</b><span>Performance</span></div><div style="margin-right: auto; font-size: 12px; color: var(--success);">عالی</div></div>
-  <div class="menu-item"><div class="menu-icon">🤖</div><div class="menu-text"><b>تیم‌های AI</b><span>AI Teams</span></div><div style="margin-right: auto; font-size: 12px; color: var(--neon-blue);">۵ تیم فعال</div></div>
-  <div class="menu-item"><div class="menu-icon">🏳️</div><div class="menu-text"><b>کشور و ملیت</b><span>Country</span></div><div style="margin-right: auto; font-size: 12px; color: var(--neon-blue);">ایران 🇮🇷</div></div>
-</div>
 
-<!-- Right Panel: User Interaction -->
-<div class="panel panel-right" id="panel-right">
-  <div class="panel-header">
-    <div class="panel-title">⋮ مرکز تعامل کاربر</div>
-    <button class="btn btn-icon btn-sm" onclick="closeAllPanels()">✕</button>
-  </div>
-  <div class="menu-item" onclick="navigate('user'); closeAllPanels();"><div class="menu-icon">👤</div><div class="menu-text"><b>پنل کاربری</b><span>User Panel</span></div></div>
-  <div class="menu-item" onclick="window.open('https://t.me/MCX_G21', '_blank'); closeAllPanels();"><div class="menu-icon">💬</div><div class="menu-text"><b>پشتیبانی</b><span>Support</span></div></div>
-  <div class="menu-item" onclick="showToast('تنظیمات کاربر باز شد'); closeAllPanels();"><div class="menu-icon">⚙️</div><div class="menu-text"><b>تنظیمات کاربر</b><span>Settings</span></div></div>
-  <div class="menu-item"><div class="menu-icon">⭐</div><div class="menu-text"><b>سطح کاربری</b><span>User Level</span></div><div style="margin-right: auto; font-size: 12px; color: var(--warning);">طلایی</div></div>
-  <div class="menu-item" onclick="showToast('بازخورد شما ثبت شد، ممنون!'); closeAllPanels();"><div class="menu-icon">📝</div><div class="menu-text"><b>بازخورد</b><span>Feedback</span></div></div>
-  <div class="menu-item"><div class="menu-icon">📱</div><div class="menu-text"><b>حالت دستگاه</b><span>Device Mode</span></div><div style="margin-right: auto; font-size: 12px; color: var(--neon-blue);" id="device-mode">دسکتاپ</div></div>
-  <div class="menu-item" onclick="showToast('برای نصب، از منوی مرورگر (Add to Home Screen) استفاده کنید'); closeAllPanels();"><div class="menu-icon">📥</div><div class="menu-text"><b>نصب اپ / وب‌اپ</b><span>Install App</span></div></div>
-</div>
+  <!-- FOOTER -->
+  <footer>
+    © MCX SuperSite OS – کریتور هوش مصنوعی متین نظافت یزدی  
+    <br>تمام حقوق برای اکوسیستم MCX محفوظ است.
+  </footer>
 
-<!-- Cart Panel -->
-<div class="panel panel-right" id="panel-cart" style="z-index: 220;">
-  <div class="panel-header">
-    <div class="panel-title">🛒 سبد خرید</div>
-    <button class="btn btn-icon btn-sm" onclick="toggleCart()">✕</button>
-  </div>
-  <div id="cart-items" style="margin-bottom: 20px;"></div>
-  <div id="cart-empty" class="text-center" style="padding: 40px 0; color: var(--text-secondary);">
-    <div style="font-size: 48px; margin-bottom: 12px;">🛒</div>
-    <p>سبد خرید شما خالی است</p>
-  </div>
-  <div id="cart-total" class="hidden" style="border-top: 1px solid var(--border); padding-top: 16px;">
-    <div class="flex justify-between" style="margin-bottom: 16px; font-size: 16px;">      <span>جمع کل:</span>
-      <b style="color: var(--neon-blue);" id="cart-total-val">۰ تومان</b>
-    </div>
-    <button class="btn btn-primary" style="width: 100%;" onclick="showToast('در حال انتقال به درگاه پرداخت امن...')">پرداخت و ثبت سفارش</button>
-  </div>
-</div>
-
-<!-- Floating Action Button -->
-<button class="fab" onclick="toggleFab()" title="دسترسی سریع">✦</button>
-<div class="fab-menu" id="fab-menu">
-  <div style="font-size: 13px; font-weight: 800; margin-bottom: 12px; color: var(--text-secondary);">⚡ منوی دسترسی سریع</div>
-  <div class="fab-grid">
-    <div class="fab-item" onclick="showToast('زبان: فارسی')"><span>🌐</span>زبان</div>
-    <div class="fab-item" onclick="toggleTheme()"><span>🎨</span>تم</div>
-    <div class="fab-item" onclick="showToast('حالت: PRO')"><span>👥</span>حالت</div>
-    <div class="fab-item" onclick="showToast('کیفیت: HD')"><span>📺</span>کیفیت</div>
-    <div class="fab-item" onclick="showToast('زمان: ' + new Date().toLocaleTimeString('fa-IR'))"><span>🕐</span>زمان</div>
-    <div class="fab-item" onclick="showToast('IP: 192.168.1.10')"><span>🌍</span>IP</div>
-    <div class="fab-item" onclick="window.open('https://t.me/MCX_G21', '_blank')"><span>💬</span>پشتیبانی</div>
-    <div class="fab-item" onclick="showToast('منابع: مستندات MCX')"><span>📚</span>منابع</div>
-    <div class="fab-item" onclick="toggleAI()"><span>🤖</span>MCX AI</div>
-    <div class="fab-item" onclick="showToast('پخش‌کننده موزیک فعال شد')"><span>🎵</span>موزیک</div>
-    <div class="fab-item" onclick="showToast('۳ اعلان جدید دارید')"><span>🔔</span>اعلان</div>
-    <div class="fab-item" onclick="showToast('موقعیت: ایران 🇮🇷')"><span>📍</span>موقعیت</div>
-    <div class="fab-item" onclick="showToast('مدیریت دانلودها و آپلودها')"><span>📥</span>دانلود</div>
-    <div class="fab-item" onclick="navigate('user')"><span>📦</span>سفارش</div>
-    <div class="fab-item" onclick="togglePanel('left'); toggleFab();"><span>☰</span>سه خط</div>
-    <div class="fab-item" onclick="togglePanel('right'); toggleFab();"><span>⋮</span>سه نقطه</div>
-  </div>
-</div>
-
-<!-- AI Chat -->
-<div class="ai-chat" id="ai-chat">
-  <div class="chat-header">
-    <div style="font-size: 24px;">🤖</div>
-    <div>
-      <div style="font-weight: 900;">دستیار MCX AI</div>
-      <div style="font-size: 11px; opacity: 0.8;">آنلاین • موتور MCX-G21</div>
-    </div>
-    <button style="margin-right: auto; background: none; border: none; color: white; font-size: 20px; cursor: pointer;" onclick="toggleAI()">×</button>
-  </div>
-  <div class="chat-body" id="chat-body">
-    <div class="msg bot">سلام! 👋 من روتر هوشمند MCX-G21 هستم. درخواستتان را بنویسید تا تحلیل، مدل‌سازی و مسیردهی کنم.</div>
-  </div>
-  <div class="chat-input-area">
-    <input type="text" class="chat-input" id="chat-input" placeholder="درخواست خود را بنویسید..." onkeypress="if(event.key==='Enter') sendChat()">
-    <button class="btn btn-primary btn-sm" onclick="sendChat()">ارسال</button>
-  </div>
-</div>
-  
-// ===== DATA & STATE =====
-const samplesData = [
-  {id: 1, name: 'قالب فروشگاهی نئون', cat: 'web', price: 1850000, code: 'MCX-W101', icon: '🛒'},
-  {id: 2, name: 'ربات هوشمند پشتیبانی', cat: 'ai', price: 3200000, code: 'MCX-A303', icon: '🤖'},
-  {id: 3, name: 'داشبورد مدیریتی پیشرفته', cat: 'ui', price: 2400000, code: 'MCX-U202', icon: '📊'},
-  {id: 4, name: 'اپلیکیشن فین‌تک آریا', cat: 'app', price: 4500000, code: 'MCX-P505', icon: '📱'},
-  {id: 5, name: 'سیستم تحلیل داده هوشمند', cat: 'ai', price: 2900000, code: 'MCX-A808', icon: '📈'},
-  {id: 6, name: 'لندینگ استارتاپی پالس', cat: 'web', price: 1200000, code: 'MCX-W707', icon: '🚀'},
-  {id: 7, name: 'کیت رابط کاربری MCX', cat: 'ui', price: 850000, code: 'MCX-U101', icon: '🎨'},
-  {id: 8, name: 'پلاگین سئو خودکار', cat: 'web', price: 650000, code: 'MCX-W404', icon: '🔍'}
-];
-
-let cart = JSON.parse(localStorage.getItem('mcx_cart')) || [];
-let currentCategory = 'all';
-
-// ===== INIT =====
-window.addEventListener('load', () => {
-  setTimeout(() => document.getElementById('loader').classList.add('hidden'), 1200);
-  renderSamples('landing-samples', samplesData.slice(0, 4));
-  renderSamples('shop-samples', samplesData);
-  updateCartUI();
-  updateDate();
-  updateClock();
-  setInterval(updateClock, 1000);
-  detectDevice();
-  window.addEventListener('resize', detectDevice);
-});
-
-function updateDate() {
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  document.getElementById('current-date').textContent = new Date().toLocaleDateString('fa-IR', options);
-}
-
-function updateClock() {
-  const time = new Date().toLocaleTimeString('fa-IR');
-  const el = document.getElementById('global-time');
-  if (el) el.textContent = time;
-}
-
-function detectDevice() {
-  const w = window.innerWidth;
-  const mode = w < 600 ? 'موبایل' : w < 1000 ? 'تبلت' : 'دسکتاپ';
-  const el = document.getElementById('device-mode');
-  if (el) el.textContent = mode;
-}
-
-// ===== NAVIGATION =====
-function navigate(pageId) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));  document.getElementById('page-' + pageId).classList.add('active');
-  
-  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-  const activeLink = document.querySelector(`.nav-link[data-page="${pageId}"]`);
-  if (activeLink) activeLink.classList.add('active');
-  
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  closeAllPanels();
-}
-
-// ===== RENDERING =====
-function renderSamples(containerId, data) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  container.innerHTML = data.map(s => `
-    <div class="card sample-card">
-      <div class="sample-img">
-        ${s.icon}
-        <div class="sample-badge">${getCatName(s.cat)}</div>
-      </div>
-      <div class="sample-body">
-        <div class="sample-title">${s.name}</div>
-        <div class="sample-meta">
-          <span>کد: ${s.code}</span>
-          <span class="sample-price">${s.price.toLocaleString('fa-IR')} ت</span>
-        </div>
-        <div class="flex gap-2">
-          <button class="btn btn-sm" style="flex: 1;" onclick="showToast('پیش‌نمایش: ${s.name}')">پیش‌نمایش</button>
-          <button class="btn btn-sm btn-primary" style="flex: 1;" onclick="addToCart(${s.id})">+ سبد</button>
-        </div>
-      </div>
-    </div>
-  `).join('');
-}
-
-function getCatName(cat) {
-  const map = { web: 'طراحی وب', ai: 'هوش مصنوعی', app: 'اپلیکیشن', ui: 'رابط کاربری' };
-  return map[cat] || cat;
-}
-
-// ===== COMMERCE LOGIC =====
-function setCategory(cat, btn) {
-  currentCategory = cat;
-  document.querySelectorAll('#category-tabs .btn').forEach(b => {
-    b.classList.remove('btn-primary');
-    b.classList.add('btn');
-  });
-  btn.classList.remove('btn');
-  btn.classList.add('btn-primary');
-  filterSamples();}
-
-function filterSamples() {
-  const search = document.getElementById('shop-search').value.toLowerCase();
-  let filtered = samplesData;
-  
-  if (currentCategory !== 'all') {
-    filtered = filtered.filter(s => s.cat === currentCategory);
-  }
-  if (search) {
-    filtered = filtered.filter(s => s.name.includes(search) || s.code.toLowerCase().includes(search));
-  }
-  
-  renderSamples('shop-samples', filtered);
-}
-
-// ===== CART LOGIC =====
-function addToCart(id) {
-  const item = samplesData.find(s => s.id === id);
-  const existing = cart.find(c => c.id === id);
-  
-  if (existing) {
-    existing.qty++;
-  } else {
-    cart.push({ ...item, qty: 1 });
-  }
-  
-  saveCart();
-  updateCartUI();
-  showToast(`✓ "${item.name}" به سبد اضافه شد`);
-}
-
-function removeFromCart(id) {
-  cart = cart.filter(c => c.id !== id);
-  saveCart();
-  updateCartUI();
-}
-
-function saveCart() {
-  localStorage.setItem('mcx_cart', JSON.stringify(cart));
-}
-
-function updateCartUI() {
-  const container = document.getElementById('cart-items');
-  const emptyEl = document.getElementById('cart-empty');
-  const totalEl = document.getElementById('cart-total');
-  const totalVal = document.getElementById('cart-total-val');
-  
-  if (cart.length === 0) {
-    container.innerHTML = '';    emptyEl.classList.remove('hidden');
-    totalEl.classList.add('hidden');
-    return;
-  }
-  
-  emptyEl.classList.add('hidden');
-  totalEl.classList.remove('hidden');
-  
-  container.innerHTML = cart.map(c => `
-    <div class="menu-item" style="margin-bottom: 8px;">
-      <div class="menu-icon" style="background: var(--bg-card); color: var(--text-primary); font-size: 20px;">${c.icon}</div>
-      <div class="menu-text" style="flex: 1;">
-        <b>${c.name}</b>
-        <span>تعداد: ${c.qty}</span>
-      </div>
-      <div style="text-align: left;">
-        <div style="font-weight: 900; color: var(--neon-blue); font-size: 14px;">${(c.price * c.qty).toLocaleString('fa-IR')}</div>
-        <button class="btn btn-sm" style="padding: 2px 8px; margin-top: 4px; color: var(--danger); border-color: var(--danger);" onclick="removeFromCart(${c.id})">حذف</button>
-      </div>
-    </div>
-  `).join('');
-  
-  const total = cart.reduce((sum, c) => sum + (c.price * c.qty), 0);
-  totalVal.textContent = total.toLocaleString('fa-IR') + ' تومان';
-}
-
-function toggleCart() {
-  const panel = document.getElementById('panel-cart');
-  const overlay = document.getElementById('overlay');
-  panel.classList.toggle('active');
-  overlay.classList.toggle('active');
-}
-
-// ===== PANELS & UI =====
-function togglePanel(side) {
-  closeAllPanels();
-  document.getElementById('panel-' + side).classList.add('active');
-  document.getElementById('overlay').classList.add('active');
-}
-
-function closeAllPanels() {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('overlay').classList.remove('active');
-  document.getElementById('fab-menu').classList.remove('active');
-}
-
-function toggleFab() {
-  document.getElementById('fab-menu').classList.toggle('active');
-}
-function toggleTheme() {
-  const body = document.body;
-  const current = body.getAttribute('data-theme');
-  const next = current === 'dark' ? 'light' : 'dark';
   <script>
-window.addEventListener("load", () => {
-  const loader = document.getElementById("loader");
-  if (loader) {
-    setTimeout(() => {
-      loader.style.opacity = "0";
-      loader.style.display = "none";
-    }, 1200);
-  }
-});
-</script>
-  body.s
+    // حل مشکل لودینگ
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loader");
+      if (loader) {
+        setTimeout(() => {
+          loader.style.opacity = "0";
+          loader.style.display = "none";
+        }, 1500);
+      }
+    });
+
+    // منوی شناور
+    const fab = document.getElementById("fab");
+    const fabMenu = document.getElementById("fab-menu");
+    if (fab && fabMenu) {
+      fab.addEventListener("click", () => {
+        fabMenu.classList.toggle("visible");
+      });
+    }
+  </script>
+</body>
+</html>
