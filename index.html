@@ -5,52 +5,82 @@
   <title>MCX SuperSite OS – کریتور هوش مصنوعی</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    :root {
+      --bg: #020617;
+      --bg-soft: #0b1120;
+      --accent1: #3b82f6;
+      --accent2: #a855f7;
+      --accent3: #22c55e;
+      --text-main: #e5e7eb;
+      --text-soft: #9ca3af;
+    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: system-ui, sans-serif;
-      background: #020617;
-      color: #e5e7eb;
+      background: radial-gradient(circle at top,#020617,#000);
+      color: var(--text-main);
       direction: rtl;
+      overflow-x: hidden;
     }
+
+    /* GLOBAL ANIMATIONS */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 20px rgba(59,130,246,0.4); }
+      50% { transform: scale(1.05); box-shadow: 0 0 35px rgba(168,85,247,0.5); }
+      100% { transform: scale(1); box-shadow: 0 0 20px rgba(59,130,246,0.4); }
+    }
+    @keyframes glowText {
+      0% { text-shadow: 0 0 10px rgba(59,130,246,0.7); }
+      50% { text-shadow: 0 0 18px rgba(168,85,247,0.9); }
+      100% { text-shadow: 0 0 10px rgba(59,130,246,0.7); }
+    }
+
     /* LOADER */
     #loader {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at top,#3b82f6,#0f172a);
+      background: radial-gradient(circle at top,#3b82f6,#0b1120);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 9999;
-      transition: opacity 0.6s ease;
+      transition: opacity 0.7s ease;
     }
     .loader-ring {
-      width: 80px; height: 80px;
+      width: 90px; height: 90px;
       border-radius: 50%;
       border: 6px solid rgba(255,255,255,0.08);
-      border-top-color: #3b82f6;
-      border-right-color: #a855f7;
+      border-top-color: var(--accent1);
+      border-right-color: var(--accent2);
       animation: spin 1s linear infinite;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
     .loader-title {
       font-weight: 900;
       font-size: 22px;
-      background: linear-gradient(90deg,#3b82f6,#a855f7);
+      background: linear-gradient(90deg,var(--accent1),var(--accent2));
       -webkit-background-clip: text;
       color: transparent;
+      animation: glowText 2s infinite;
       margin-bottom: 6px;
     }
-    .loader-sub { font-size: 13px; opacity: 0.85; }
+    .loader-sub {
+      font-size: 13px;
+      opacity: 0.85;
+    }
 
-    /* LAYOUT */
+    /* MAINLAYOUT HEADER */
     header {
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: blur(12px);
-      background: rgba(15,23,42,0.9);
+      backdrop-filter: blur(16px);
+      background: linear-gradient(90deg,rgba(15,23,42,0.95),rgba(15,23,42,0.7));
       border-bottom: 1px solid rgba(148,163,184,0.35);
       padding: 10px 14px;
       display: flex;
@@ -65,10 +95,13 @@
     .brand-title {
       font-weight: 800;
       font-size: 15px;
+      background: linear-gradient(90deg,var(--accent1),var(--accent2));
+      -webkit-background-clip: text;
+      color: transparent;
     }
     .brand-sub {
       font-size: 11px;
-      opacity: 0.75;
+      color: var(--text-soft);
     }
     .header-actions {
       margin-right: auto;
@@ -77,38 +110,50 @@
       gap: 8px;
     }
     .icon-btn {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 999px;
       border: 1px solid rgba(148,163,184,0.5);
       background: radial-gradient(circle at top,#1f2937,#020617);
-      color: #e5e7eb;
+      color: var(--text-main);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 16px;
       cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    }
+    .icon-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 18px rgba(59,130,246,0.5);
+      border-color: var(--accent1);
     }
 
     main {
-      padding: 16px 14px 80px;
-      max-width: 1080px;
+      padding: 16px 14px 90px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
-    .page {
-      display: none;
-    }
-    .page.active {
-      display: block;
-    }
+    .page { display: none; }
+    .page.active { display: block; }
 
     section {
-      margin-bottom: 22px;
-      border-radius: 16px;
+      margin-bottom: 24px;
+      border-radius: 18px;
       border: 1px solid rgba(148,163,184,0.35);
       background: radial-gradient(circle at top,#020617,#020617 40%,#0b1120 100%);
-      padding: 14px 14px 16px;
+      padding: 16px 16px 18px;
+      position: relative;
+      overflow: hidden;
+    }
+    section::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at top,var(--accent1),transparent 60%);
+      opacity: 0.08;
+      pointer-events: none;
     }
     .sec-title {
       font-size: 15px;
@@ -117,7 +162,7 @@
     }
     .sec-sub {
       font-size: 12px;
-      opacity: 0.8;
+      opacity: 0.82;
       margin-bottom: 10px;
     }
     .pill-row {
@@ -136,7 +181,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
       gap: 10px;
     }
     .card {
@@ -145,6 +190,16 @@
       background: rgba(15,23,42,0.95);
       padding: 10px 11px 11px;
       font-size: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at bottom,var(--accent2),transparent 60%);
+      opacity: 0.06;
+      pointer-events: none;
     }
     .card-title {
       font-weight: 700;
@@ -161,7 +216,7 @@
       border-radius: 999px;
       border: 1px solid rgba(148,163,184,0.5);
       background: rgba(15,23,42,0.9);
-      color: #e5e7eb;
+      color: var(--text-main);
       font-size: 12px;
       outline: none;
     }
@@ -178,9 +233,10 @@
       border: 1px solid rgba(148,163,184,0.5);
       font-size: 11px;
       cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
     }
     .tab.active {
-      background: linear-gradient(90deg,#3b82f6,#a855f7);
+      background: linear-gradient(90deg,var(--accent1),var(--accent2));
       border-color: transparent;
       color: #f9fafb;
     }
@@ -199,32 +255,33 @@
       direction: ltr;
       text-align: left;
       font-weight: 600;
-      color: #e5e7eb;
+      color: var(--text-main);
     }
 
-    /* FLOATING ACCESS SYSTEM */
+    /* FLOATING ACCESS BUTTON */
     .fab {
       position: fixed;
       left: 14px;
       bottom: 18px;
-      width: 52px;
-      height: 52px;
+      width: 56px;
+      height: 56px;
       border-radius: 999px;
       border: 1px solid rgba(148,163,184,0.6);
       background: radial-gradient(circle at top,#1f2937,#020617);
-      box-shadow: 0 0 25px rgba(59,130,246,0.45);
+      box-shadow: 0 0 25px rgba(59,130,246,0.55);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 22px;
       cursor: pointer;
       z-index: 40;
+      animation: pulse 3s infinite;
     }
     .fab-menu {
       position: fixed;
-      left: 74px;
+      left: 80px;
       bottom: 18px;
-      min-width: 230px;
+      min-width: 240px;
       border-radius: 16px;
       border: 1px solid rgba(148,163,184,0.6);
       background: rgba(15,23,42,0.96);
@@ -233,9 +290,7 @@
       display: none;
       z-index: 39;
     }
-    .fab-menu.visible {
-      display: block;
-    }
+    .fab-menu.visible { display: block; }
     .fab-menu-title {
       font-weight: 700;
       margin-bottom: 6px;
@@ -250,6 +305,7 @@
       border-radius: 999px;
       border: 1px solid rgba(148,163,184,0.5);
       background: rgba(17,24,39,0.95);
+      cursor: default;
     }
 
     footer {
@@ -261,12 +317,43 @@
 
     .ai-log {
       font-size: 11px;
-      max-height: 120px;
+      max-height: 140px;
       overflow-y: auto;
       border-radius: 10px;
       border: 1px solid rgba(148,163,184,0.4);
       padding: 6px 8px;
       background: rgba(15,23,42,0.9);
+    }
+
+    /* SYSTEM & USER MENUS */
+    .menu-panel {
+      position: fixed;
+      top: 52px;
+      width: 260px;
+      border-radius: 16px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.96);
+      padding: 10px 10px 8px;
+      font-size: 11px;
+      display: none;
+      z-index: 39;
+    }
+    .menu-panel.visible { display: block; }
+    .menu-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .menu-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .menu-chip {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(17,24,39,0.95);
+      cursor: pointer;
     }
   </style>
 </head>
@@ -286,37 +373,39 @@
       <div class="brand-sub">سیستم‌عامل وب برای کریتور هوش مصنوعی – متین نظافت یزدی</div>
     </div>
     <div class="header-actions">
-      <button class="icon-btn" id="btn-system" title="منوی سه‌خط">☰</button>
-      <button class="icon-btn" id="btn-user" title="منوی سه‌نقطه">⋮</button>
+      <!-- سه خط بالا سمت راست -->
+      <button class="icon-btn" id="btn-system" title="مرکز کنترل سیستم">☰</button>
+      <!-- سه نقطه بالا سمت چپ -->
+      <button class="icon-btn" id="btn-user" title="مرکز تعامل کاربر">⋮</button>
     </div>
   </header>
 
   <!-- SYSTEM MENU (THREE-LINES) -->
-  <div class="fab-menu" id="system-menu" style="top: 52px; right: 14px; left: auto;">
-    <div class="fab-menu-title">مرکز کنترل سیستم</div>
-    <div class="fab-menu-list">
-      <div class="fab-chip">زبان: فارسی</div>
-      <div class="fab-chip">تم: نئونی تیره</div>
-      <div class="fab-chip">حالت کاربر: کریتور AI</div>
-      <div class="fab-chip">کیفیت نمایش: بالا</div>
-      <div class="fab-chip">زمان جهانی</div>
-      <div class="fab-chip">IP و عملکرد</div>
-      <div class="fab-chip">تیم‌های هوش مصنوعی</div>
-      <div class="fab-chip">کشور و ملیت</div>
+  <div class="menu-panel" id="system-menu" style="right: 14px;">
+    <div class="menu-title">مرکز کنترل سیستم</div>
+    <div class="menu-list">
+      <div class="menu-chip">زبان: فارسی</div>
+      <div class="menu-chip">تم: نئونی تیره</div>
+      <div class="menu-chip">حالت کاربر: کریتور AI</div>
+      <div class="menu-chip">کیفیت نمایش: بالا</div>
+      <div class="menu-chip">زمان جهانی</div>
+      <div class="menu-chip">IP و عملکرد</div>
+      <div class="menu-chip">تیم‌های هوش مصنوعی</div>
+      <div class="menu-chip">کشور و ملیت</div>
     </div>
   </div>
 
   <!-- USER MENU (THREE-DOTS) -->
-  <div class="fab-menu" id="user-menu" style="top: 52px; left: 14px;">
-    <div class="fab-menu-title">مرکز تعامل کاربر</div>
-    <div class="fab-menu-list">
-      <div class="fab-chip" data-nav="user-os">پنل کاربر</div>
-      <div class="fab-chip">پشتیبانی</div>
-      <div class="fab-chip">تنظیمات کاربر</div>
-      <div class="fab-chip">سطح کاربر</div>
-      <div class="fab-chip">بازخورد</div>
-      <div class="fab-chip">حالت دستگاه</div>
-      <div class="fab-chip">نصب وب‌اپ / شورتکات</div>
+  <div class="menu-panel" id="user-menu" style="left: 14px;">
+    <div class="menu-title">مرکز تعامل کاربر</div>
+    <div class="menu-list">
+      <div class="menu-chip" data-nav="user-os">پنل کاربر</div>
+      <div class="menu-chip">پشتیبانی</div>
+      <div class="menu-chip">تنظیمات کاربر</div>
+      <div class="menu-chip">سطح کاربر</div>
+      <div class="menu-chip">بازخورد</div>
+      <div class="menu-chip">حالت دستگاه</div>
+      <div class="menu-chip">نصب وب‌اپ / شورتکات</div>
     </div>
   </div>
 
@@ -338,17 +427,19 @@
           <div class="pill">نمونه‌های برتر</div>
           <div class="pill">خدمات برتر</div>
           <div class="pill">نظرات و بازخوردها</div>
+          <div class="pill">لینک‌های راهنما</div>
+          <div class="pill">لایسنس و کپی‌رایت</div>
         </div>
       </section>
 
       <section>
         <div class="sec-title">آیا آماده‌ای وارد سوپرسایت شوی؟</div>
         <div class="sec-sub">
-          این سیستم‌عامل وب برای متین نظافت یزدی به‌عنوان کریتور هوش مصنوعی طراحی شده است؛
+          این سیستم‌عامل وب برای متین نظافت یزدی به‌عنوان کریتور هوش مصنوعی طراحی شده است؛  
           هدف آن ساخت میلیون‌ها سرویس واقعی بر پایهٔ هوش مصنوعی و اکوسیستم MCX است.
         </div>
         <button class="icon-btn" style="width:auto; padding:6px 14px; font-size:13px;" onclick="navigate('dashboard')">
-          شروع کنیم – ورود به داشبورد
+          Let’s Go – ورود به داشبورد
         </button>
       </section>
 
@@ -378,6 +469,7 @@
           <div class="tab" onclick="navigate('landing')">صفحهٔ ورود</div>
           <div class="tab" onclick="navigate('commerce')">موتور تجارت هوشمند</div>
           <div class="tab" onclick="navigate('user-os')">پنل کاربر</div>
+          <div class="tab" onclick="navigate('ai-router')">هستهٔ MCX AI</div>
         </div>
       </section>
 
@@ -514,6 +606,7 @@
       <div class="fab-chip">زبان: فارسی</div>
       <div class="fab-chip">تم: نئونی</div>
       <div class="fab-chip">حالت: کریتور AI</div>
+      <div class="fab-chip">کیفیت نمایش: بالا</div>
       <div class="fab-chip" onclick="navigate('ai-router')">شروع MCX AI Router</div>
       <div class="fab-chip" onclick="navigate('commerce')">رفتن به موتور تجارت</div>
       <div class="fab-chip" onclick="navigate('dashboard')">رفتن به داشبورد</div>
@@ -671,4 +764,4 @@
     }
   </script>
 </body>
-</html>
+  </html>
