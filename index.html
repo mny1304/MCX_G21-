@@ -2,91 +2,47 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>MCX SuperSite OS | کریتور هوش مصنوعی</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      margin: 0;
-      font-family: system-ui, sans-serif;
-      background: #050816;
-      color: #f5f5f5;
-      direction: rtl;
-    }
-    /* لودینگ */
-    #loader {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at top, #4f46e5, #020617);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      z-index: 9999;
-      transition: opacity 0.6s ease;
-    }
-    .loader-circle {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      border: 6px solid rgba(255,255,255,0.1);
-      border-top-color: #38bdf8متین، گرفتم چی می‌خوای—  
-یک **فایل HTML آماده**، فارسی، دربارهٔ «کریتور AI»، با لودینگ درست، و اطلاعات تماس خودت.
-
-این هم یک `index.html` کامل که می‌تونی مستقیم بذاری تو Netlify؛  
-لودینگ بعد از ۱.۵ ثانیه میره کنار و صفحهٔ اصلی میاد:
-
-```html
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-  <meta charset="UTF-8">
   <title>MCX SuperSite OS – کریتور هوش مصنوعی</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
       margin: 0;
       font-family: system-ui, sans-serif;
-      background: #050816;
-      color: #f5f5f5;
+      background: #020617;
+      color: #e5e7eb;
       direction: rtl;
     }
     /* LOADER */
     #loader {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at top, #3b82f6 0, #050816 55%);
+      background: radial-gradient(circle at top,#3b82f6,#0f172a);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 9999;
-      transition: opacity 0.5s ease;
+      transition: opacity 0.6s ease;
     }
     .loader-ring {
-      width: 90px;
-      height: 90px;
+      width: 80px; height: 80px;
       border-radius: 50%;
       border: 6px solid rgba(255,255,255,0.08);
       border-top-color: #3b82f6;
       border-right-color: #a855f7;
       animation: spin 1s linear infinite;
-      margin-bottom: 18px;
+      margin-bottom: 12px;
     }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
     .loader-title {
       font-weight: 900;
-      font-size: 20px;
+      font-size: 22px;
       background: linear-gradient(90deg,#3b82f6,#a855f7);
       -webkit-background-clip: text;
       color: transparent;
       margin-bottom: 6px;
     }
-    .loader-sub {
-      font-size: 13px;
-      opacity: 0.85;
-    }
+    .loader-sub { font-size: 13px; opacity: 0.85; }
 
     /* LAYOUT */
     header {
@@ -94,8 +50,8 @@
       top: 0;
       z-index: 50;
       backdrop-filter: blur(12px);
-      background: rgba(5,8,22,0.9);
-      border-bottom: 1px solid rgba(148,163,184,0.25);
+      background: rgba(15,23,42,0.9);
+      border-bottom: 1px solid rgba(148,163,184,0.35);
       padding: 10px 14px;
       display: flex;
       align-items: center;
@@ -112,7 +68,7 @@
     }
     .brand-sub {
       font-size: 11px;
-      opacity: 0.7;
+      opacity: 0.75;
     }
     .header-actions {
       margin-right: auto;
@@ -124,7 +80,7 @@
       width: 32px;
       height: 32px;
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.4);
+      border: 1px solid rgba(148,163,184,0.5);
       background: radial-gradient(circle at top,#1f2937,#020617);
       color: #e5e7eb;
       display: flex;
@@ -136,12 +92,19 @@
 
     main {
       padding: 16px 14px 80px;
-      max-width: 960px;
+      max-width: 1080px;
       margin: 0 auto;
     }
 
+    .page {
+      display: none;
+    }
+    .page.active {
+      display: block;
+    }
+
     section {
-      margin-bottom: 26px;
+      margin-bottom: 22px;
       border-radius: 16px;
       border: 1px solid rgba(148,163,184,0.35);
       background: radial-gradient(circle at top,#020617,#020617 40%,#0b1120 100%);
@@ -154,7 +117,7 @@
     }
     .sec-sub {
       font-size: 12px;
-      opacity: 0.75;
+      opacity: 0.8;
       margin-bottom: 10px;
     }
     .pill-row {
@@ -171,24 +134,57 @@
       background: rgba(15,23,42,0.9);
     }
 
-    .cta {
-      margin-top: 10px;
-      display: flex;
-      justify-content: flex-start;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 10px;
     }
-    .cta-btn {
-      border-radius: 999px;
-      padding: 8px 18px;
-      border: none;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 600;
-      background: linear-gradient(90deg,#3b82f6,#a855f7);
-      color: #f9fafb;
-      box-shadow: 0 0 25px rgba(59,130,246,0.35);
+    .card {
+      border-radius: 14px;
+      border: 1px solid rgba(148,163,184,0.4);
+      background: rgba(15,23,42,0.95);
+      padding: 10px 11px 11px;
+      font-size: 12px;
+    }
+    .card-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .card-meta {
+      font-size: 11px;
+      opacity: 0.75;
     }
 
-    /* CONTACT */
+    .input {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.9);
+      color: #e5e7eb;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 8px 0;
+    }
+    .tab {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      font-size: 11px;
+      cursor: pointer;
+    }
+    .tab.active {
+      background: linear-gradient(90deg,#3b82f6,#a855f7);
+      border-color: transparent;
+      color: #f9fafb;
+    }
+
     .contact-grid {
       display: grid;
       grid-template-columns: minmax(0,1fr);
@@ -206,7 +202,7 @@
       color: #e5e7eb;
     }
 
-    /* FLOATING BUTTON */
+    /* FLOATING ACCESS SYSTEM */
     .fab {
       position: fixed;
       left: 14px;
@@ -228,7 +224,7 @@
       position: fixed;
       left: 74px;
       bottom: 18px;
-      min-width: 210px;
+      min-width: 230px;
       border-radius: 16px;
       border: 1px solid rgba(148,163,184,0.6);
       background: rgba(15,23,42,0.96);
@@ -262,6 +258,16 @@
       opacity: 0.7;
       text-align: center;
     }
+
+    .ai-log {
+      font-size: 11px;
+      max-height: 120px;
+      overflow-y: auto;
+      border-radius: 10px;
+      border: 1px solid rgba(148,163,184,0.4);
+      padding: 6px 8px;
+      background: rgba(15,23,42,0.9);
+    }
   </style>
 </head>
 <body>
@@ -273,113 +279,252 @@
     <div class="loader-sub">در حال راه‌اندازی هستهٔ هوش مصنوعی...</div>
   </div>
 
-  <!-- HEADER -->
+  <!-- HEADER / MAINLAYOUT -->
   <header>
     <div class="brand">
       <div class="brand-title">MCX SuperSite OS</div>
-      <div class="brand-sub">سیستم‌عامل وب برای کریتورهای هوش مصنوعی</div>
+      <div class="brand-sub">سیستم‌عامل وب برای کریتور هوش مصنوعی – متین نظافت یزدی</div>
     </div>
     <div class="header-actions">
-      <button class="icon-btn" title="منوی سیستم">☰</button>
-      <button class="icon-btn" title="منوی کاربر">⋮</button>
+      <button class="icon-btn" id="btn-system" title="منوی سه‌خط">☰</button>
+      <button class="icon-btn" id="btn-user" title="منوی سه‌نقطه">⋮</button>
     </div>
   </header>
 
+  <!-- SYSTEM MENU (THREE-LINES) -->
+  <div class="fab-menu" id="system-menu" style="top: 52px; right: 14px; left: auto;">
+    <div class="fab-menu-title">مرکز کنترل سیستم</div>
+    <div class="fab-menu-list">
+      <div class="fab-chip">زبان: فارسی</div>
+      <div class="fab-chip">تم: نئونی تیره</div>
+      <div class="fab-chip">حالت کاربر: کریتور AI</div>
+      <div class="fab-chip">کیفیت نمایش: بالا</div>
+      <div class="fab-chip">زمان جهانی</div>
+      <div class="fab-chip">IP و عملکرد</div>
+      <div class="fab-chip">تیم‌های هوش مصنوعی</div>
+      <div class="fab-chip">کشور و ملیت</div>
+    </div>
+  </div>
+
+  <!-- USER MENU (THREE-DOTS) -->
+  <div class="fab-menu" id="user-menu" style="top: 52px; left: 14px;">
+    <div class="fab-menu-title">مرکز تعامل کاربر</div>
+    <div class="fab-menu-list">
+      <div class="fab-chip" data-nav="user-os">پنل کاربر</div>
+      <div class="fab-chip">پشتیبانی</div>
+      <div class="fab-chip">تنظیمات کاربر</div>
+      <div class="fab-chip">سطح کاربر</div>
+      <div class="fab-chip">بازخورد</div>
+      <div class="fab-chip">حالت دستگاه</div>
+      <div class="fab-chip">نصب وب‌اپ / شورتکات</div>
+    </div>
+  </div>
+
   <!-- MAIN -->
   <main>
-    <!-- LANDING / معرفی -->
-    <section>
-      <div class="sec-title">کریتور هوش مصنوعی متین نظافت یزدی</div>
-      <div class="sec-sub">
-        این سوپرسایت برای معرفی اکوسیستم MCX و سرویس‌های کریتور AI طراحی شده است؛
-        تمرکز اصلی روی ساخت سیستم‌ها، برندها و سرویس‌های هوش مصنوعی در مقیاس بالا است.
-      </div>
-      <div class="pill-row">
-        <div class="pill">MCX-G21 – نسل ۲۱ اکوسیستم</div>
-        <div class="pill">طراحی سوپرسایت و سیستم‌عامل وب</div>
-        <div class="pill">ساخت سرویس‌های هوش مصنوعی سفارشی</div>
-        <div class="pill">معماری اکوسیستم دیجیتال</div>
-      </div>
-      <div class="cta">
-        <button class="cta-btn">شروع همکاری با کریتور AI</button>
-      </div>
-    </section>
+    <!-- LANDING OS -->
+    <div class="page active" id="page-landing">
+      <section>
+        <div class="sec-title">ورود به اکوسیستم MCX</div>
+        <div class="sec-sub">
+          این صفحه، دروازهٔ ورود به MCX SuperSite OS است؛  
+          یک سیستم‌عامل وب چندلایه برای کریتورهای هوش مصنوعی، با تمرکز بر ساخت سرویس‌ها،
+          برندها و اکوسیستم‌های دیجیتال در مقیاس بالا.
+        </div>
+        <div class="pill-row">
+          <div class="pill">معرفی MCX</div>
+          <div class="pill">معرفی MCX-G21</div>
+          <div class="pill">توضیح برند کریتور AI</div>
+          <div class="pill">نمونه‌های برتر</div>
+          <div class="pill">خدمات برتر</div>
+          <div class="pill">نظرات و بازخوردها</div>
+        </div>
+      </section>
 
-    <!-- خدمات کریتور AI -->
-    <section>
-      <div class="sec-title">خدمات کریتور هوش مصنوعی</div>
-      <div class="sec-sub">
-        متین نظافت یزدی به‌عنوان کریتور AI، روی طراحی و ساخت سیستم‌های هوشمند، سوپرسایت‌ها،
-        داشبوردهای تحلیلی و موتورهای تجارت هوشمند برای برندها و کسب‌وکارها تمرکز دارد.
-      </div>
-      <ul style="font-size: 12px; margin: 0; padding-right: 18px;">
-        <li>طراحی و پیاده‌سازی سوپرسایت‌ها و سیستم‌عامل‌های وب مبتنی بر هوش مصنوعی</li>
-        <li>ساخت موتورهای پیشنهاددهنده، روتِر هوشمند و دستیارهای AI برای کسب‌وکارها</li>
-        <li>معماری اکوسیستم دیجیتال و طراحی لایه‌های سرویس، کاربر و تحلیل</li>
-        <li>طراحی رابط کاربری نئونی و تجربهٔ کاربری برای سیستم‌های هوشمند</li>
-      </ul>
-    </section>
+      <section>
+        <div class="sec-title">آیا آماده‌ای وارد سوپرسایت شوی؟</div>
+        <div class="sec-sub">
+          این سیستم‌عامل وب برای متین نظافت یزدی به‌عنوان کریتور هوش مصنوعی طراحی شده است؛
+          هدف آن ساخت میلیون‌ها سرویس واقعی بر پایهٔ هوش مصنوعی و اکوسیستم MCX است.
+        </div>
+        <button class="icon-btn" style="width:auto; padding:6px 14px; font-size:13px;" onclick="navigate('dashboard')">
+          شروع کنیم – ورود به داشبورد
+        </button>
+      </section>
 
-    <!-- اطلاعات تماس -->
-    <section>
-      <div class="sec-title">اطلاعات تماس و ارتباط</div>
-      <div class="sec-sub">
-        برای همکاری، سفارش پروژه یا دریافت مشاوره در حوزهٔ کریتور هوش مصنوعی و اکوسیستم MCX،
-        از راه‌های زیر می‌توانید در ارتباط باشید:
-      </div>
-      <div class="contact-grid">
-        <div class="contact-item">
-          <span>ایمیل:</span>
-          <div class="contact-value">mny13041399@gmail.com</div>
+      <section>
+        <div class="sec-title">اطلاعات قانونی و برند</div>
+        <div class="sec-sub">
+          تمامی حقوق این سوپرسایت برای اکوسیستم MCX و کریتور هوش مصنوعی متین نظافت یزدی محفوظ است.
+          این سیستم‌عامل وب در حال توسعهٔ مداوم است و نسخهٔ فعلی، لایهٔ معرفی و دسترسی اولیه را ارائه می‌دهد.
         </div>
-        <div class="contact-item">
-          <span>شماره تماس:</span>
-          <div class="contact-value">09155004906</div>
-        </div>
-        <div class="contact-item">
-          <span>نام کامل:</span>
-          <div class="contact-value" style="direction: rtl; text-align: right;">متین نظافت یزدی</div>
-        </div>
-        <div class="contact-item">
-          <span>تلگرام:</span>
-          <div class="contact-value">@MCX_G21</div>
-        </div>
-        <div class="contact-item">
-          <span>روبیکا:</span>
-          <div class="contact-value">@MCX_G21</div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
-    <!-- بخش کوتاه درباره MCX-G21 -->
-    <section>
-      <div class="sec-title">MCX-G21 چیست؟</div>
-      <div class="sec-sub">
-        MCX-G21 نسل جدیدی از اکوسیستم‌های دیجیتال است که هدف آن ساخت میلیون‌ها سرویس واقعی
-        بر پایهٔ هوش مصنوعی، سوپرسایت‌ها و سیستم‌های عامل وب است؛ این سوپرسایت اولین لایهٔ
-        معرفی و دسترسی به این اکوسیستم است.
-      </div>
-    </section>
+    <!-- DASHBOARD OS -->
+    <div class="page" id="page-dashboard">
+      <section>
+        <div class="sec-title">داشبورد کریتور AI</div>
+        <div class="sec-sub">
+          این داشبورد، خانهٔ اصلی کاربر در MCX SuperSite OS است؛  
+          شامل جستجو، ناوبری سریع، سرویس‌های منتخب و تحلیل‌های کلی.
+        </div>
+        <input class="input" id="dashboard-search" placeholder="جستجو در سرویس‌ها، نمونه‌ها و سفارش‌ها...">
+      </section>
+
+      <section>
+        <div class="sec-title">ناوبری سریع</div>
+        <div class="tabs">
+          <div class="tab" onclick="navigate('landing')">صفحهٔ ورود</div>
+          <div class="tab" onclick="navigate('commerce')">موتور تجارت هوشمند</div>
+          <div class="tab" onclick="navigate('user-os')">پنل کاربر</div>
+        </div>
+      </section>
+
+      <section>
+        <div class="sec-title">سرویس‌های برتر</div>
+        <div class="grid">
+          <div class="card">
+            <div class="card-title">طراحی سوپرسایت هوش مصنوعی</div>
+            <div class="card-meta">سیستم‌عامل وب کامل برای برندها و استارتاپ‌ها</div>
+          </div>
+          <div class="card">
+            <div class="card-title">موتور پیشنهاددهندهٔ MCX</div>
+            <div class="card-meta">سیستم توصیه‌گر برای فروشگاه‌ها و پلتفرم‌ها</div>
+          </div>
+          <div class="card">
+            <div class="card-title">داشبورد تحلیلی هوشمند</div>
+            <div class="card-meta">تحلیل رفتار کاربر، سفارش‌ها و عملکرد سرویس‌ها</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="sec-title">تحلیل کلی و عملکرد</div>
+        <div class="sec-sub">
+          این بخش در نسخه‌های بعدی به دیتابیس متصل می‌شود و آمار روزانه، هفتگی و ماهانهٔ سرویس‌ها،
+          سفارش‌ها و عملکرد سیستم را نمایش می‌دهد.
+        </div>
+      </section>
+    </div>
+
+    <!-- AI COMMERCE ENGINE -->
+    <div class="page" id="page-commerce">
+      <section>
+        <div class="sec-title">موتور تجارت هوشمند MCX</div>
+        <div class="sec-sub">
+          این بخش، موتور فروش و نمایش نمونه‌ها و سرویس‌هاست؛  
+          شامل جستجو، فیلتر، کارت‌های نمونه و سبد خرید.
+        </div>
+        <input class="input" id="commerce-search" placeholder="جستجوی نمونه‌ها، سرویس‌ها و کدهای MCX...">
+        <div class="tabs" id="commerce-tabs">
+          <div class="tab active" data-cat="all">همه</div>
+          <div class="tab" data-cat="web">وب</div>
+          <div class="tab" data-cat="app">اپلیکیشن</div>
+          <div class="tab" data-cat="ai">هوش مصنوعی</div>
+          <div class="tab" data-cat="ui">رابط کاربری</div>
+        </div>
+      </section>
+
+      <section>
+        <div class="sec-title">نمونه‌ها و کارت‌ها</div>
+        <div class="grid" id="samples-grid"></div>
+      </section>
+
+      <section>
+        <div class="sec-title">سبد خرید (نمونهٔ اولیه)</div>
+        <div class="sec-sub">
+          در نسخهٔ فعلی، سبد خرید به‌صورت نمایشی است؛  
+          در نسخه‌های بعدی به دیتابیس سفارش‌ها متصل می‌شود.
+        </div>
+        <div class="ai-log" id="cart-log"></div>
+      </section>
+    </div>
+
+    <!-- USER OS -->
+    <div class="page" id="page-user-os">
+      <section>
+        <div class="sec-title">پنل کاربر – کریتور هوش مصنوعی</div>
+        <div class="sec-sub">
+          این پنل برای متین نظافت یزدی به‌عنوان کریتور AI طراحی شده است؛  
+          شامل اطلاعات کاربر، دستگاه‌ها، امنیت، کیف پول و حالت‌های کاربری.
+        </div>
+      </section>
+
+      <section>
+        <div class="sec-title">اطلاعات کاربر</div>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <span>نام:</span>
+            <div class="contact-value" style="direction: rtl; text-align: right;">متین نظافت یزدی</div>
+          </div>
+          <div class="contact-item">
+            <span>ایمیل:</span>
+            <div class="contact-value">mny13041399@gmail.com</div>
+          </div>
+          <div class="contact-item">
+            <span>شماره:</span>
+            <div class="contact-value">09155004906</div>
+          </div>
+          <div class="contact-item">
+            <span>تلگرام:</span>
+            <div class="contact-value">@MCX_G21</div>
+          </div>
+          <div class="contact-item">
+            <span>روبیکا:</span>
+            <div class="contact-value">@MCX_G21</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="sec-title">حالت‌ها و امنیت</div>
+        <div class="pill-row">
+          <div class="pill">حالت کاربر: کریتور AI</div>
+          <div class="pill">کیف پول: در حال راه‌اندازی</div>
+          <div class="pill">دستگاه‌های فعال: موبایل + دسکتاپ</div>
+          <div class="pill">پنل امنیت: نسخهٔ بعدی</div>
+        </div>
+      </section>
+    </div>
+
+    <!-- MCX AI ROUTER -->
+    <div class="page" id="page-ai-router">
+      <section>
+        <div class="sec-title">هستهٔ هوش مصنوعی MCX – AI Router</div>
+        <div class="sec-sub">
+          این بخش، مغز داخلی سوپرسایت است؛  
+          درخواست‌ها را تحلیل می‌کند، نوع نیت را تشخیص می‌دهد و کاربر را به صفحهٔ مناسب هدایت می‌کند.
+        </div>
+        <input class="input" id="ai-input" placeholder="بنویس: جستجو، خرید، پشتیبانی، تنظیمات، AI...">
+      </section>
+
+      <section>
+        <div class="sec-title">لاگ هستهٔ هوش مصنوعی</div>
+        <div class="ai-log" id="ai-log"></div>
+      </section>
+    </div>
   </main>
 
-  <!-- FLOATING BUTTON -->
+  <!-- FLOATING ACCESS BUTTON -->
   <button class="fab" id="fab">⚡</button>
   <div class="fab-menu" id="fab-menu">
     <div class="fab-menu-title">دسترسی سریع MCX</div>
     <div class="fab-menu-list">
       <div class="fab-chip">زبان: فارسی</div>
+      <div class="fab-chip">تم: نئونی</div>
       <div class="fab-chip">حالت: کریتور AI</div>
-      <div class="fab-chip">کیفیت نمایش: نئونی</div>
-      <div class="fab-chip">شروع هستهٔ MCX AI</div>
-      <div class="fab-chip">پشتیبانی و ارتباط</div>
-      <div class="fab-chip">نمایش اطلاعات تماس</div>
+      <div class="fab-chip" onclick="navigate('ai-router')">شروع MCX AI Router</div>
+      <div class="fab-chip" onclick="navigate('commerce')">رفتن به موتور تجارت</div>
+      <div class="fab-chip" onclick="navigate('dashboard')">رفتن به داشبورد</div>
+      <div class="fab-chip" onclick="navigate('user-os')">نمایش پنل کاربر</div>
     </div>
   </div>
 
   <!-- FOOTER -->
   <footer>
     © MCX SuperSite OS – کریتور هوش مصنوعی متین نظافت یزدی  
-    <br>تمام حقوق برای اکوسیستم MCX محفوظ است.
+    <br>این نسخه، لایهٔ اولیهٔ سیستم‌عامل وب است و برای توسعهٔ بیشتر آماده است.
   </footer>
 
   <script>
@@ -392,15 +537,137 @@
           loader.style.display = "none";
         }, 1500);
       }
+      renderSamples();
     });
 
-    // منوی شناور
+    // ناوبری صفحات
+    function navigate(pageId) {
+      document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+      const target = document.getElementById("page-" + pageId);
+      if (target) {
+        target.classList.add("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+
+    // منوهای سه‌خط و سه‌نقطه
+    const btnSystem = document.getElementById("btn-system");
+    const btnUser = document.getElementById("btn-user");
+    const systemMenu = document.getElementById("system-menu");
+    const userMenu = document.getElementById("user-menu");
+
+    btnSystem.addEventListener("click", () => {
+      systemMenu.classList.toggle("visible");
+      userMenu.classList.remove("visible");
+    });
+    btnUser.addEventListener("click", () => {
+      userMenu.classList.toggle("visible");
+      systemMenu.classList.remove("visible");
+    });
+
+    // دکمهٔ شناور
     const fab = document.getElementById("fab");
     const fabMenu = document.getElementById("fab-menu");
-    if (fab && fabMenu) {
-      fab.addEventListener("click", () => {
-        fabMenu.classList.toggle("visible");
+    fab.addEventListener("click", () => {
+      fabMenu.classList.toggle("visible");
+    });
+
+    // داده‌های نمونه برای موتور تجارت
+    const samplesData = [
+      {id: 1, name: "سوپرسایت برند هوش مصنوعی", cat: "web", price: "18,500,000", code: "MCX-W101"},
+      {id: 2, name: "داشبورد تحلیلی کریتور AI", cat: "ai", price: "23,000,000", code: "MCX-A303"},
+      {id: 3, name: "اپلیکیشن خدمات هوشمند", cat: "app", price: "45,000,000", code: "MCX-P505"},
+      {id: 4, name: "پلتفرم تحلیل داده هوشمند", cat: "ai", price: "29,000,000", code: "MCX-A808"},
+      {id: 5, name: "ربات پاسخ‌گوی فارسی برای سایت‌ها", cat: "web", price: "12,000,000", code: "MCX-W707"},
+      {id: 6, name: "کارت رابط کاربری نئونی MCX", cat: "ui", price: "8,500,000", code: "MCX-U101"},
+      {id: 7, name: "پلتفرم سئو موتور و تحلیل محتوا", cat: "web", price: "6,500,000", code: "MCX-W404"}
+    ];
+
+    let cart = [];
+    function renderSamples(cat = "all") {
+      const grid = document.getElementById("samples-grid");
+      if (!grid) return;
+      const filtered = cat === "all" ? samplesData : samplesData.filter(s => s.cat === cat);
+      grid.innerHTML = filtered.map(s => `
+        <div class="card">
+          <div class="card-title">${s.name}</div>
+          <div class="card-meta">نوع: ${s.cat.toUpperCase()} | کد: ${s.code}</div>
+          <div class="card-meta">قیمت تقریبی: ${s.price} تومان</div>
+          <button class="icon-btn" style="margin-top:8px; width:auto; padding:4px 10px; font-size:11px;"
+            onclick="addToCart('${s.code}')">
+            افزودن به سبد
+          </button>
+        </div>
+      `).join("");
+    }
+
+    function addToCart(code) {
+      cart.push(code);
+      const log = document.getElementById("cart-log");
+      if (log) {
+        log.textContent = "کدهای موجود در سبد: " + cart.join("، ");
+      }
+    }
+
+    // تب‌های دسته‌بندی
+    document.querySelectorAll("#commerce-tabs .tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll("#commerce-tabs .tab").forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+        const cat = tab.getAttribute("data-cat");
+        renderSamples(cat);
       });
+    });
+
+    // MCX AI Router ساده
+    const aiInput = document.getElementById("ai-input");
+    const aiLog = document.getElementById("ai-log");
+
+    if (aiInput && aiLog) {
+      aiInput.addEventListener("keydown", e => {
+        if (e.key === "Enter") {
+          const text = aiInput.value.trim();
+          if (!text) return;
+          const intent = detectIntent(text);
+          const model = selectModel(intent);
+          const targetPage = routeIntent(intent);
+          aiLog.innerHTML += `درخواست: "${text}" → نیت: ${intent} → مدل: ${model} → صفحه: ${targetPage}<br>`;
+          if (targetPage) navigate(targetPage);
+          aiInput.value = "";
+        }
+      });
+    }
+
+    function detectIntent(text) {
+      const t = text.toLowerCase();
+      if (t.includes("خرید") || t.includes("نمونه") || t.includes("فروش")) return "purchase";
+      if (t.includes("جستجو") || t.includes("سرچ")) return "search";
+      if (t.includes("پشتیبانی") || t.includes("کمک")) return "support";
+      if (t.includes("تنظیمات") || t.includes("تم") || t.includes("حالت")) return "settings";
+      if (t.includes("ai") || t.includes("هوش مصنوعی")) return "ai-usage";
+      return "unknown";
+    }
+
+    function selectModel(intent) {
+      switch (intent) {
+        case "purchase": return "MCX-Commerce-Model";
+        case "search": return "MCX-Search-Model";
+        case "support": return "MCX-Support-Model";
+        case "settings": return "MCX-Config-Model";
+        case "ai-usage": return "MCX-Core-AI-Model";
+        default: return "MCX-Default-Model";
+      }
+    }
+
+    function routeIntent(intent) {
+      switch (intent) {
+        case "purchase": return "commerce";
+        case "search": return "dashboard";
+        case "support": return "user-os";
+        case "settings": return "user-os";
+        case "ai-usage": return "ai-router";
+        default: return "landing";
+      }
     }
   </script>
 </body>
