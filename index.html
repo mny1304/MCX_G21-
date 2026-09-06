@@ -2,7 +2,7 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>MCX SuperSite OS – اکوسیستم کریتور هوش مصنوعی</title>
+  <title>MCX Empire – SuperSite OS برای کریتور هوش مصنوعی</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root {
@@ -37,10 +37,34 @@
       50% { text-shadow: 0 0 18px rgba(168,85,247,0.9); }
       100% { text-shadow: 0 0 10px rgba(59,130,246,0.7); }
     }
-    @keyframes bgFlow {
-      0% { background-position: 0% 0%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 0%; }
+    @keyframes blobMove {
+      0% { transform: translate(0,0) scale(1); opacity: 0.4; }
+      50% { transform: translate(40px,-20px) scale(1.2); opacity: 0.7; }
+      100% { transform: translate(-20px,30px) scale(1); opacity: 0.4; }
+    }
+
+    /* BACKGROUND BLOBS */
+    .bg-blob {
+      position: fixed;
+      width: 260px;
+      height: 260px;
+      border-radius: 999px;
+      filter: blur(40px);
+      opacity: 0.5;
+      z-index: -1;
+      animation: blobMove 18s infinite alternate;
+    }
+    .bg-blob.one {
+      top: -40px; right: -40px;
+      background: radial-gradient(circle,var(--accent1),transparent);
+    }
+    .bg-blob.two {
+      bottom: -60px; left: -40px;
+      background: radial-gradient(circle,var(--accent2),transparent);
+    }
+    .bg-blob.three {
+      top: 40%; left: 10%;
+      background: radial-gradient(circle,var(--accent3),transparent);
     }
 
     /* LOADER */
@@ -78,7 +102,7 @@
       opacity: 0.85;
     }
 
-    /* MAINLAYOUT HEADER */
+    /* HEADER */
     header {
       position: sticky;
       top: 0;
@@ -363,28 +387,31 @@
 </head>
 <body>
 
+  <!-- BACKGROUND BLOBS -->
+  <div class="bg-blob one"></div>
+  <div class="bg-blob two"></div>
+  <div class="bg-blob three"></div>
+
   <!-- LOADER -->
   <div id="loader">
     <div class="loader-ring"></div>
-    <div class="loader-title">MCX SuperSite OS</div>
-    <div class="loader-sub">در حال راه‌اندازی هستهٔ هوش مصنوعی...</div>
+    <div class="loader-title">MCX Empire SuperSite OS</div>
+    <div class="loader-sub">در حال راه‌اندازی امپراطوری کریتور هوش مصنوعی...</div>
   </div>
 
-  <!-- HEADER / MAINLAYOUT -->
+  <!-- HEADER -->
   <header>
     <div class="brand">
-      <div class="brand-title">MCX SuperSite OS</div>
-      <div class="brand-sub">اکوسیستم کریتور هوش مصنوعی – متین نظافت یزدی</div>
+      <div class="brand-title">MCX Empire – SuperSite OS</div>
+      <div class="brand-sub">سیستم‌عامل وب برای کریتور هوش مصنوعی – متین نظافت یزدی</div>
     </div>
     <div class="header-actions">
-      <!-- سه خط بالا سمت راست -->
       <button class="icon-btn" id="btn-system" title="مرکز کنترل سیستم">☰</button>
-      <!-- سه نقطه بالا سمت چپ -->
       <button class="icon-btn" id="btn-user" title="مرکز تعامل کاربر">⋮</button>
     </div>
   </header>
 
-  <!-- SYSTEM MENU (THREE-LINES) -->
+  <!-- SYSTEM MENU -->
   <div class="menu-panel" id="system-menu" style="right: 14px;">
     <div class="menu-title">مرکز کنترل سیستم</div>
     <div class="menu-list">
@@ -399,183 +426,147 @@
     </div>
   </div>
 
-  <!-- USER MENU (THREE-DOTS) -->
+  <!-- USER MENU -->
   <div class="menu-panel" id="user-menu" style="left: 14px;">
     <div class="menu-title">مرکز تعامل کاربر</div>
     <div class="menu-list">
-      <div class="menu-chip" data-nav="user-os">پنل کاربر</div>
-      <div class="menu-chip">پشتیبانی</div>
-      <div class="menu-chip">تنظیمات کاربر</div>
-      <div class="menu-chip">سطح کاربر</div>
-      <div class="menu-chip">بازخورد</div>
-      <div class="menu-chip">حالت دستگاه</div>
-      <div class="menu-chip">نصب وب‌اپ / شورتکات</div>
+      <div class="menu-chip" onclick="navigate('user')">پنل کاربر</div>
+      <div class="menu-chip" onclick="navigate('services')">خدمات کریتور AI</div>
+      <div class="menu-chip" onclick="navigate('empire')">MCX Empire</div>
+      <div class="menu-chip" onclick="navigate('contact')">ارتباط و پشتیبانی</div>
+      <div class="menu-chip" onclick="navigate('ai-router')">هستهٔ MCX AI</div>
     </div>
   </div>
 
   <!-- MAIN -->
   <main>
-    <!-- LANDING OS (ECOSYSTEM ENTRY) -->
+    <!-- LANDING -->
     <div class="page active" id="page-landing">
       <section>
-        <div class="sec-title">ورود به اکوسیستم MCX</div>
+        <div class="sec-title">ورود به امپراطوری MCX کریتور هوش مصنوعی</div>
         <div class="sec-sub">
-          این صفحه، دروازهٔ ورود به MCX SuperSite OS است؛  
-          یک سیستم‌عامل وب چندلایه برای کریتورهای هوش مصنوعی، با تمرکز بر ساخت سرویس‌ها،
-          برندها و اکوسیستم‌های دیجیتال در مقیاس بالا.
+          این سوپرسایت، سیستم‌عامل وب امپراطوری MCX است؛  
+          جایی که یک کریتور هوش مصنوعی، میلیون‌ها سرویس واقعی، برندهای اکوسیستمی و زیرساخت‌های رایگان AI را طراحی و راه‌اندازی می‌کند.
         </div>
         <div class="pill-row">
           <div class="pill">معرفی MCX</div>
-          <div class="pill">معرفی MCX-G21</div>
-          <div class="pill">توضیح برند کریتور AI</div>
-          <div class="pill">نمونه‌های برتر</div>
-          <div class="pill">خدمات برتر</div>
-          <div class="pill">نظرات و بازخوردها</div>
-          <div class="pill">لینک‌های راهنما</div>
-          <div class="pill">لایسنس و کپی‌رایت</div>
-        </div>
-      </section>
-
-      <section>
-        <div class="sec-title">MCX-G21 – هستهٔ نسل جدید</div>
-        <div class="sec-sub">
-          MCX-G21 موتور مرکزی این اکوسیستم است؛  
-          برای ساخت ۸٬۰۰۰٬۰۰۰ مجموعه و ۵٬۰۰۰٬۰۰۰ سرمجموعه،  
-          و تولید ۱۰٬۰۰۰٬۰۰۰ خدمت دیجیتالی واقعی بر پایهٔ هوش مصنوعی.
-        </div>
-        <div class="grid">
-          <div class="card">
-            <div class="card-title">هستهٔ معماری اکوسیستم</div>
-            <div class="card-meta">طراحی لایه‌های سرویس، برند، کاربر و داده</div>
-          </div>
-          <div class="card">
-            <div class="card-title">موتور تولید سرویس</div>
-            <div class="card-meta">تبدیل ایده به سرویس دیجیتال قابل اجرا</div>
-          </div>
-          <div class="card">
-            <div class="card-title">سیستم مدیریت برند</div>
-            <div class="card-meta">ساخت بزرگترین برند اکوسیستمی دیجیتال در جهان</div>
-          </div>
+          <div class="pill">MCX-G21 – موتور اکوسیستم</div>
+          <div class="pill">کریتور AI – متین نظافت یزدی</div>
+          <div class="pill">هدف: ۱۰٬۰۰۰٬۰۰۰ خدمت دیجیتال</div>
+          <div class="pill">۸٬۰۰۰٬۰۰۰ مجموعه و ۵٬۰۰۰٬۰۰۰ سرمجموعه</div>
+          <div class="pill">بزرگترین امپراطوری کریتوری</div>
+          <div class="pill">بزرگترین ارائه‌دهندهٔ رایگان هوش مصنوعی در خاورمیانه</div>
         </div>
       </section>
 
       <section>
         <div class="sec-title">آیا آماده‌ای وارد سوپرسایت شوی؟</div>
         <div class="sec-sub">
-          این سیستم‌عامل وب برای متین نظافت یزدی به‌عنوان کریتور هوش مصنوعی طراحی شده است؛  
-          هدف آن ساخت بزرگترین امپراطوری کریتوری و بزرگترین ارائه‌دهندهٔ رایگان هوش مصنوعی در خاورمیانه است.
+          این صفحه فقط یک لندینگ ساده نیست؛  
+          نقطهٔ ورود به یک سیستم‌عامل وب چندلایه است که برای ساخت و مدیریت اکوسیستم‌های عظیم هوش مصنوعی طراحی شده.
         </div>
         <button class="icon-btn" style="width:auto; padding:6px 14px; font-size:13px;" onclick="navigate('dashboard')">
-          Let’s Go – ورود به داشبورد
+          ورود به داشبورد کریتور AI
         </button>
-      </section>
-
-      <section>
-        <div class="sec-title">اطلاعات قانونی و برند</div>
-        <div class="sec-sub">
-          تمامی حقوق این سوپرسایت برای اکوسیستم MCX و کریتور هوش مصنوعی متین نظافت یزدی محفوظ است.  
-          این سیستم‌عامل وب در حال توسعهٔ مداوم است و نسخهٔ فعلی، لایهٔ معرفی و دسترسی اولیه را ارائه می‌دهد.
-        </div>
       </section>
     </div>
 
-    <!-- DASHBOARD OS (USER HOME) -->
+    <!-- DASHBOARD -->
     <div class="page" id="page-dashboard">
       <section>
-        <div class="sec-title">داشبورد کریتور AI</div>
+        <div class="sec-title">داشبورد کریتور هوش مصنوعی</div>
         <div class="sec-sub">
-          این داشبورد، خانهٔ اصلی کاربر در MCX SuperSite OS است؛  
-          شامل جستجو، ناوبری سریع، سرویس‌های منتخب و تحلیل‌های کلی.
+          این داشبورد، خانهٔ اصلی متین نظافت یزدی به‌عنوان کریتور AI است؛  
+          جایی که سرویس‌ها، اکوسیستم‌ها، سفارش‌ها و تحلیل‌ها در یک نمای واحد دیده می‌شوند.
         </div>
-        <input class="input" id="dashboard-search" placeholder="جستجو در سرویس‌ها، نمونه‌ها و سفارش‌ها...">
+        <input class="input" id="dashboard-search" placeholder="جستجو در سرویس‌ها، اکوسیستم‌ها و سفارش‌ها...">
       </section>
 
       <section>
-        <div class="sec-title">ناوبری سریع اکوسیستم</div>
+        <div class="sec-title">ناوبری سریع امپراطوری</div>
         <div class="tabs">
           <div class="tab" onclick="navigate('landing')">صفحهٔ ورود</div>
-          <div class="tab" onclick="navigate('commerce')">موتور تجارت هوشمند</div>
-          <div class="tab" onclick="navigate('user-os')">پنل کاربر</div>
+          <div class="tab" onclick="navigate('services')">خدمات کریتور AI</div>
+          <div class="tab" onclick="navigate('empire')">MCX Empire</div>
+          <div class="tab" onclick="navigate('user')">پنل کاربر</div>
           <div class="tab" onclick="navigate('ai-router')">هستهٔ MCX AI</div>
         </div>
       </section>
 
       <section>
-        <div class="sec-title">خدمات برتر اکوسیستم MCX</div>
+        <div class="sec-title">نمای کلی سرویس‌ها و اکوسیستم‌ها</div>
+        <div class="grid" id="dashboard-services"></div>
+      </section>
+    </div>
+
+    <!-- SERVICES (CREATOR AI) -->
+    <div class="page" id="page-services">
+      <section>
+        <div class="sec-title">خدمات حرفه‌ای کریتور هوش مصنوعی – MCX</div>
+        <div class="sec-sub">
+          این بخش، خدمات واقعی یک کریتور AI را نمایش می‌دهد؛  
+          تمرکز روی معماری اکوسیستم، طراحی سوپرسایت‌ها، راه‌اندازی زیرساخت‌های رایگان هوش مصنوعی و ساخت امپراطوری کریتوری.
+        </div>
+      </section>
+
+      <section>
+        <div class="sec-title">سرویس‌های اصلی MCX Creator AI</div>
+        <div class="grid" id="services-grid"></div>
+      </section>
+    </div>
+
+    <!-- EMPIRE (VISION & ARCHITECTURE) -->
+    <div class="page" id="page-empire">
+      <section>
+        <div class="sec-title">MCX Empire – معماری امپراطوری کریتور هوش مصنوعی</div>
+        <div class="sec-sub">
+          این بخش، چشم‌انداز و معماری امپراطوری MCX را توضیح می‌دهد؛  
+          از طراحی مجموعه‌ها و سرمجموعه‌ها تا ساخت برندهای اکوسیستمی و زیرساخت‌های رایگان AI.
+        </div>
+        <div class="pill-row">
+          <div class="pill">طراحی معماری ۸٬۰۰۰٬۰۰۰ مجموعه</div>
+          <div class="pill">۵٬۰۰۰٬۰۰۰ سرمجموعهٔ اکوسیستمی</div>
+          <div class="pill">۱۰٬۰۰۰٬۰۰۰ خدمت دیجیتال واقعی</div>
+          <div class="pill">برند اکوسیستمی جهانی</div>
+          <div class="pill">امپراطوری کریتوری</div>
+        </div>
+      </section>
+
+      <section>
+        <div class="sec-title">لایه‌های امپراطوری MCX</div>
         <div class="grid">
           <div class="card">
-            <div class="card-title">طراحی سوپرسایت هوش مصنوعی</div>
-            <div class="card-meta">سیستم‌عامل وب کامل برای برندها و استارتاپ‌ها</div>
+            <div class="card-title">لایهٔ سرویس‌ها</div>
+            <div class="card-meta">طراحی و راه‌اندازی سرویس‌های هوش مصنوعی در مقیاس بالا</div>
           </div>
           <div class="card">
-            <div class="card-title">موتور پیشنهاددهندهٔ MCX</div>
-            <div class="card-meta">سیستم توصیه‌گر برای فروشگاه‌ها و پلتفرم‌ها</div>
+            <div class="card-title">لایهٔ اکوسیستم‌ها</div>
+            <div class="card-meta">ساخت شبکه‌ای از سرویس‌ها، برندها و کاربران متصل</div>
           </div>
           <div class="card">
-            <div class="card-title">داشبورد تحلیلی هوشمند</div>
-            <div class="card-meta">تحلیل رفتار کاربر، سفارش‌ها و عملکرد سرویس‌ها</div>
+            <div class="card-title">لایهٔ زیرساخت رایگان AI</div>
+            <div class="card-meta">ارائهٔ دسترسی رایگان به مدل‌های هوش مصنوعی در خاورمیانه</div>
           </div>
           <div class="card">
-            <div class="card-title">سیستم مدیریت سفارشات</div>
-            <div class="card-meta">اتصال به دیتابیس سفارش‌ها و وضعیت‌ها</div>
+            <div class="card-title">لایهٔ برند و هویت</div>
+            <div class="card-meta">ساخت هویت نئونی، تکنولوژیک و کریتورمحور برای MCX</div>
           </div>
-        </div>
-      </section>
-
-      <section>
-        <div class="sec-title">تحلیل کلی و عملکرد</div>
-        <div class="sec-sub">
-          این بخش در نسخه‌های بعدی به دیتابیس متصل می‌شود و آمار روزانه، هفتگی و ماهانهٔ سرویس‌ها،
-          سفارش‌ها، کاربران و عملکرد سیستم را نمایش می‌دهد.
         </div>
       </section>
     </div>
 
-    <!-- AI COMMERCE ENGINE (Samples + Shop) -->
-    <div class="page" id="page-commerce">
+    <!-- USER PANEL -->
+    <div class="page" id="page-user">
       <section>
-        <div class="sec-title">موتور تجارت هوشمند MCX</div>
+        <div class="sec-title">پنل کاربر – متین نظافت یزدی</div>
         <div class="sec-sub">
-          این بخش، موتور فروش و نمایش نمونه‌ها و سرویس‌هاست؛  
-          شامل جستجو، فیلتر، کارت‌های نمونه و سبد خرید.
-        </div>
-        <input class="input" id="commerce-search" placeholder="جستجوی نمونه‌ها، سرویس‌ها و کدهای MCX...">
-        <div class="tabs" id="commerce-tabs">
-          <div class="tab active" data-cat="all">همه</div>
-          <div class="tab" data-cat="web">وب</div>
-          <div class="tab" data-cat="app">اپلیکیشن</div>
-          <div class="tab" data-cat="ai">هوش مصنوعی</div>
-          <div class="tab" data-cat="ui">رابط کاربری</div>
+          این پنل، هویت کریتور AI را نمایش می‌دهد؛  
+          اطلاعات تماس، کانال‌ها و وضعیت کاربر در امپراطوری MCX.
         </div>
       </section>
 
       <section>
-        <div class="sec-title">نمونه‌ها و کارت‌ها</div>
-        <div class="grid" id="samples-grid"></div>
-      </section>
-
-      <section>
-        <div class="sec-title">سبد خرید (نمونهٔ اولیه)</div>
-        <div class="sec-sub">
-          در نسخهٔ فعلی، سبد خرید به‌صورت نمایشی است؛  
-          در نسخه‌های بعدی به دیتابیس سفارش‌ها متصل می‌شود.
-        </div>
-        <div class="ai-log" id="cart-log"></div>
-      </section>
-    </div>
-
-    <!-- USER OS (User Panel) -->
-    <div class="page" id="page-user-os">
-      <section>
-        <div class="sec-title">پنل کاربر – کریتور هوش مصنوعی</div>
-        <div class="sec-sub">
-          این پنل برای متین نظافت یزدی به‌عنوان کریتور AI طراحی شده است؛  
-          شامل اطلاعات کاربر، دستگاه‌ها، امنیت، کیف پول و حالت‌های کاربری.
-        </div>
-      </section>
-
-      <section>
-        <div class="sec-title">اطلاعات کاربر</div>
+        <div class="sec-title">اطلاعات کاربر و کانال‌ها</div>
         <div class="contact-grid">
           <div class="contact-item">
             <span>نام:</span>
@@ -601,27 +592,48 @@
       </section>
 
       <section>
-        <div class="sec-title">حالت‌ها، دستگاه‌ها و امنیت</div>
+        <div class="sec-title">حالت‌ها و وضعیت کاربر</div>
         <div class="pill-row">
-          <div class="pill">حالت کاربر: کریتور AI</div>
-          <div class="pill">کیف پول: در حال راه‌اندازی</div>
-          <div class="pill">دستگاه‌های فعال: موبایل + دسکتاپ</div>
-          <div class="pill">پنل امنیت: نسخهٔ بعدی</div>
-          <div class="pill">خدمات اضطراری: در حال طراحی</div>
-          <div class="pill">انتخاب تم و حالت کاربر</div>
+          <div class="pill">حالت کاربر: کریتور AI حرفه‌ای</div>
+          <div class="pill">امپراطوری: MCX Empire</div>
+          <div class="pill">تمرکز: اکوسیستم‌های هوش مصنوعی و سرویس‌های رایگان</div>
         </div>
       </section>
     </div>
 
-    <!-- MCX AI ROUTER (Internal AI Brain) -->
+    <!-- CONTACT & SUPPORT -->
+    <div class="page" id="page-contact">
+      <section>
+        <div class="sec-title">ارتباط با MCX Creator AI</div>
+        <div class="sec-sub">
+          برای همکاری، سفارش سرویس، طراحی اکوسیستم یا راه‌اندازی زیرساخت هوش مصنوعی،  
+          از کانال‌های زیر استفاده کن.
+        </div>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <span>ایمیل:</span>
+            <div class="contact-value">mny13041399@gmail.com</div>
+          </div>
+          <div class="contact-item">
+            <span>تلگرام:</span>
+            <div class="contact-value">@MCX_G21</div>
+          </div>
+          <div class="contact-item">
+            <span>روبیکا:</span>
+            <div class="contact-value">@MCX_G21</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- AI ROUTER -->
     <div class="page" id="page-ai-router">
       <section>
-        <div class="sec-title">هستهٔ هوش مصنوعی MCX – AI Router</div>
+        <div class="sec-title">MCX AI Router – هستهٔ هوش مصنوعی امپراطوری</div>
         <div class="sec-sub">
-          این بخش، مغز داخلی سوپرسایت است؛  
-          درخواست‌ها را تحلیل می‌کند، نوع نیت را تشخیص می‌دهد و کاربر را به صفحهٔ مناسب هدایت می‌کند.
+          این هسته، درخواست‌ها را تحلیل می‌کند، نیت را تشخیص می‌دهد و تو را به لایهٔ مناسب امپراطوری هدایت می‌کند.
         </div>
-        <input class="input" id="ai-input" placeholder="بنویس: جستجو، خرید، پشتیبانی، تنظیمات، AI...">
+        <input class="input" id="ai-input" placeholder="بنویس: سرویس، امپراطوری، پشتیبانی، تنظیمات، AI...">
       </section>
 
       <section>
@@ -631,37 +643,29 @@
     </div>
   </main>
 
-  <!-- FLOATING ACCESS BUTTON (Global Access System) -->
+  <!-- FLOATING ACCESS BUTTON -->
   <button class="fab" id="fab">⚡</button>
   <div class="fab-menu" id="fab-menu">
-    <div class="fab-menu-title">دسترسی سریع MCX</div>
+    <div class="fab-menu-title">دسترسی سریع MCX Empire</div>
     <div class="fab-menu-list">
-      <div class="fab-chip">زبان: فارسی</div>
-      <div class="fab-chip">تم: نئونی</div>
-      <div class="fab-chip">حالت: کریتور AI</div>
-      <div class="fab-chip">کیفیت نمایش: بالا</div>
-      <div class="fab-chip">زمان</div>
-      <div class="fab-chip">IP</div>
-      <div class="fab-chip">پشتیبانی</div>
-      <div class="fab-chip">مراجع</div>
+      <div class="fab-chip" onclick="navigate('landing')">صفحهٔ ورود</div>
+      <div class="fab-chip" onclick="navigate('dashboard')">داشبورد کریتور AI</div>
+      <div class="fab-chip" onclick="navigate('services')">خدمات کریتور AI</div>
+      <div class="fab-chip" onclick="navigate('empire')">MCX Empire</div>
+      <div class="fab-chip" onclick="navigate('user')">پنل کاربر</div>
+      <div class="fab-chip" onclick="navigate('contact')">ارتباط و پشتیبانی</div>
       <div class="fab-chip" onclick="navigate('ai-router')">شروع MCX AI Router</div>
-      <div class="fab-chip">پخش موسیقی</div>
-      <div class="fab-chip">اعلان‌ها</div>
-      <div class="fab-chip">موقعیت</div>
-      <div class="fab-chip">دانلود / آپلود</div>
-      <div class="fab-chip">وضعیت سفارش‌ها</div>
-      <div class="fab-chip">نمایش سه‌خط / سه‌نقطه</div>
     </div>
   </div>
 
   <!-- FOOTER -->
   <footer>
-    © MCX SuperSite OS – اکوسیستم کریتور هوش مصنوعی متین نظافت یزدی  
-    <br>این نسخه، لایهٔ اولیهٔ سیستم‌عامل وب است و برای توسعهٔ بیشتر و اتصال کامل به دیتابیس آماده است.
+    © MCX Empire SuperSite OS – کریتور هوش مصنوعی متین نظافت یزدی  
+    <br>این نسخه، لایهٔ اولیهٔ سیستم‌عامل وب امپراطوری MCX است و برای اتصال به دیتابیس و توسعهٔ بیشتر آماده است.
   </footer>
 
   <script>
-    // حل مشکل لودینگ
+    // LOADER
     window.addEventListener("load", () => {
       const loader = document.getElementById("loader");
       if (loader) {
@@ -670,20 +674,21 @@
           loader.style.display = "none";
         }, 1500);
       }
-      renderSamples();
+      renderDashboardServices();
+      renderCreatorServices();
     });
 
-    // ناوبری صفحات
-    function navigate(pageId) {
+    // NAVIGATION
+    function navigate(pageKey) {
       document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-      const target = document.getElementById("page-" + pageId);
+      const target = document.getElementById("page-" + pageKey);
       if (target) {
         target.classList.add("active");
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
     }
 
-    // منوهای سه‌خط و سه‌نقطه
+    // MENUS
     const btnSystem = document.getElementById("btn-system");
     const btnUser = document.getElementById("btn-user");
     const systemMenu = document.getElementById("system-menu");
@@ -698,61 +703,65 @@
       systemMenu.classList.remove("visible");
     });
 
-    // دکمهٔ شناور
+    // FAB
     const fab = document.getElementById("fab");
     const fabMenu = document.getElementById("fab-menu");
     fab.addEventListener("click", () => {
       fabMenu.classList.toggle("visible");
     });
 
-    // داده‌های نمونه برای موتور تجارت
-    const samplesData = [
-      {id: 1, name: "سوپرسایت برند هوش مصنوعی", cat: "web", price: "18,500,000", code: "MCX-W101"},
-      {id: 2, name: "داشبورد تحلیلی کریتور AI", cat: "ai", price: "23,000,000", code: "MCX-A303"},
-      {id: 3, name: "اپلیکیشن خدمات هوشمند", cat: "app", price: "45,000,000", code: "MCX-P505"},
-      {id: 4, name: "پلتفرم تحلیل داده هوشمند", cat: "ai", price: "29,000,000", code: "MCX-A808"},
-      {id: 5, name: "ربات پاسخ‌گوی فارسی برای سایت‌ها", cat: "web", price: "12,000,000", code: "MCX-W707"},
-      {id: 6, name: "کارت رابط کاربری نئونی MCX", cat: "ui", price: "8,500,000", code: "MCX-U101"},
-      {id: 7, name: "پلتفرم سئو موتور و تحلیل محتوا", cat: "web", price: "6,500,000", code: "MCX-W404"}
+    // DATA – SERVICES FOR CREATOR AI
+    const creatorServices = [
+      {
+        title: "طراحی معماری اکوسیستم MCX",
+        meta: "طراحی لایه‌های سرویس، مجموعه‌ها، سرمجموعه‌ها و ارتباطات داده‌ای در مقیاس امپراطوری.",
+        type: "ecosystem"
+      },
+      {
+        title: "ساخت سوپرسایت‌های هوش مصنوعی",
+        meta: "طراحی و پیاده‌سازی سیستم‌عامل‌های وب چندلایه برای برندها و استارتاپ‌ها.",
+        type: "supersite"
+      },
+      {
+        title: "راه‌اندازی زیرساخت رایگان هوش مصنوعی",
+        meta: "طراحی و راه‌اندازی پلتفرم‌های رایگان AI برای کاربران خاورمیانه.",
+        type: "infra"
+      },
+      {
+        title: "سیستم تولید ۱۰٬۰۰۰٬۰۰۰ خدمت دیجیتال",
+        meta: "معماری و طراحی موتور تولید سرویس‌های واقعی بر پایهٔ هوش مصنوعی.",
+        type: "production"
+      },
+      {
+        title: "برندسازی اکوسیستمی دیجیتال",
+        meta: "ساخت برندهای چندلایه، نئونی و تکنولوژیک برای اکوسیستم‌های هوش مصنوعی.",
+        type: "brand"
+      }
     ];
 
-    let cart = [];
-    function renderSamples(cat = "all") {
-      const grid = document.getElementById("samples-grid");
+    function renderCreatorServices() {
+      const grid = document.getElementById("services-grid");
       if (!grid) return;
-      const filtered = cat === "all" ? samplesData : samplesData.filter(s => s.cat === cat);
-      grid.innerHTML = filtered.map(s => `
+      grid.innerHTML = creatorServices.map(s => `
         <div class="card">
-          <div class="card-title">${s.name}</div>
-          <div class="card-meta">نوع: ${s.cat.toUpperCase()} | کد: ${s.code}</div>
-          <div class="card-meta">قیمت تقریبی: ${s.price} تومان</div>
-          <button class="icon-btn" style="margin-top:8px; width:auto; padding:4px 10px; font-size:11px;"
-            onclick="addToCart('${s.code}')">
-            افزودن به سبد
-          </button>
+          <div class="card-title">${s.title}</div>
+          <div class="card-meta">${s.meta}</div>
         </div>
       `).join("");
     }
 
-    function addToCart(code) {
-      cart.push(code);
-      const log = document.getElementById("cart-log");
-      if (log) {
-        log.textContent = "کدهای موجود در سبد: " + cart.join("، ");
-      }
+    function renderDashboardServices() {
+      const grid = document.getElementById("dashboard-services");
+      if (!grid) return;
+      grid.innerHTML = creatorServices.slice(0, 4).map(s => `
+        <div class="card">
+          <div class="card-title">${s.title}</div>
+          <div class="card-meta">${s.meta}</div>
+        </div>
+      `).join("");
     }
 
-    // تب‌های دسته‌بندی
-    document.querySelectorAll("#commerce-tabs .tab").forEach(tab => {
-      tab.addEventListener("click", () => {
-        document.querySelectorAll("#commerce-tabs .tab").forEach(t => t.classList.remove("active"));
-        tab.classList.add("active");
-        const cat = tab.getAttribute("data-cat");
-        renderSamples(cat);
-      });
-    });
-
-    // MCX AI Router ساده
+    // AI ROUTER
     const aiInput = document.getElementById("ai-input");
     const aiLog = document.getElementById("ai-log");
 
@@ -762,9 +771,8 @@
           const text = aiInput.value.trim();
           if (!text) return;
           const intent = detectIntent(text);
-          const model = selectModel(intent);
           const targetPage = routeIntent(intent);
-          aiLog.innerHTML += `درخواست: "${text}" → نیت: ${intent} → مدل: ${model} → صفحه: ${targetPage}<br>`;
+          aiLog.innerHTML += `درخواست: "${text}" → نیت: ${intent} → صفحه: ${targetPage}<br>`;
           if (targetPage) navigate(targetPage);
           aiInput.value = "";
         }
@@ -773,32 +781,23 @@
 
     function detectIntent(text) {
       const t = text.toLowerCase();
-      if (t.includes("خرید") || t.includes("نمونه") || t.includes("فروش")) return "purchase";
-      if (t.includes("جستجو") || t.includes("سرچ")) return "search";
-      if (t.includes("پشتیبانی") || t.includes("کمک")) return "support";
-      if (t.includes("تنظیمات") || t.includes("تم") || t.includes("حالت")) return "settings";
-      if (t.includes("ai") || t.includes("هوش مصنوعی")) return "ai-usage";
-      return "unknown";
-    }
-
-    function selectModel(intent) {
-      switch (intent) {
-        case "purchase": return "MCX-Commerce-Model";
-        case "search": return "MCX-Search-Model";
-        case "support": return "MCX-Support-Model";
-        case "settings": return "MCX-Config-Model";
-        case "ai-usage": return "MCX-Core-AI-Model";
-        default: return "MCX-Default-Model";
-      }
+      if (t.includes("سرویس") || t.includes("خدمت") || t.includes("service")) return "services";
+      if (t.includes("امپراطوری") || t.includes("empire")) return "empire";
+      if (t.includes("پشتیبانی") || t.includes("ارتباط")) return "contact";
+      if (t.includes("تنظیمات") || t.includes("کاربر")) return "user";
+      if (t.includes("داشبورد") || t.includes("dashboard")) return "dashboard";
+      if (t.includes("ai") || t.includes("هوش مصنوعی")) return "ai";
+      return "landing";
     }
 
     function routeIntent(intent) {
       switch (intent) {
-        case "purchase": return "commerce";
-        case "search": return "dashboard";
-        case "support": return "user-os";
-        case "settings": return "user-os";
-        case "ai-usage": return "ai-router";
+        case "services": return "services";
+        case "empire": return "empire";
+        case "contact": return "contact";
+        case "user": return "user";
+        case "dashboard": return "dashboard";
+        case "ai": return "ai-router";
         default: return "landing";
       }
     }
