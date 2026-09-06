@@ -2,7 +2,7 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>MCX SuperSite OS – کریتور هوش مصنوعی</title>
+  <title>MCX SuperSite OS – اکوسیستم کریتور هوش مصنوعی</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root {
@@ -11,6 +11,7 @@
       --accent1: #3b82f6;
       --accent2: #a855f7;
       --accent3: #22c55e;
+      --accent4: #f97316;
       --text-main: #e5e7eb;
       --text-soft: #9ca3af;
     }
@@ -25,9 +26,7 @@
     }
 
     /* GLOBAL ANIMATIONS */
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes pulse {
       0% { transform: scale(1); box-shadow: 0 0 20px rgba(59,130,246,0.4); }
       50% { transform: scale(1.05); box-shadow: 0 0 35px rgba(168,85,247,0.5); }
@@ -37,6 +36,11 @@
       0% { text-shadow: 0 0 10px rgba(59,130,246,0.7); }
       50% { text-shadow: 0 0 18px rgba(168,85,247,0.9); }
       100% { text-shadow: 0 0 10px rgba(59,130,246,0.7); }
+    }
+    @keyframes bgFlow {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 0%; }
     }
 
     /* LOADER */
@@ -281,7 +285,7 @@
       position: fixed;
       left: 80px;
       bottom: 18px;
-      min-width: 240px;
+      min-width: 260px;
       border-radius: 16px;
       border: 1px solid rgba(148,163,184,0.6);
       background: rgba(15,23,42,0.96);
@@ -317,7 +321,7 @@
 
     .ai-log {
       font-size: 11px;
-      max-height: 140px;
+      max-height: 160px;
       overflow-y: auto;
       border-radius: 10px;
       border: 1px solid rgba(148,163,184,0.4);
@@ -329,7 +333,7 @@
     .menu-panel {
       position: fixed;
       top: 52px;
-      width: 260px;
+      width: 280px;
       border-radius: 16px;
       border: 1px solid rgba(148,163,184,0.6);
       background: rgba(15,23,42,0.96);
@@ -370,7 +374,7 @@
   <header>
     <div class="brand">
       <div class="brand-title">MCX SuperSite OS</div>
-      <div class="brand-sub">سیستم‌عامل وب برای کریتور هوش مصنوعی – متین نظافت یزدی</div>
+      <div class="brand-sub">اکوسیستم کریتور هوش مصنوعی – متین نظافت یزدی</div>
     </div>
     <div class="header-actions">
       <!-- سه خط بالا سمت راست -->
@@ -411,7 +415,7 @@
 
   <!-- MAIN -->
   <main>
-    <!-- LANDING OS -->
+    <!-- LANDING OS (ECOSYSTEM ENTRY) -->
     <div class="page active" id="page-landing">
       <section>
         <div class="sec-title">ورود به اکوسیستم MCX</div>
@@ -433,10 +437,33 @@
       </section>
 
       <section>
+        <div class="sec-title">MCX-G21 – هستهٔ نسل جدید</div>
+        <div class="sec-sub">
+          MCX-G21 موتور مرکزی این اکوسیستم است؛  
+          برای ساخت ۸٬۰۰۰٬۰۰۰ مجموعه و ۵٬۰۰۰٬۰۰۰ سرمجموعه،  
+          و تولید ۱۰٬۰۰۰٬۰۰۰ خدمت دیجیتالی واقعی بر پایهٔ هوش مصنوعی.
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="card-title">هستهٔ معماری اکوسیستم</div>
+            <div class="card-meta">طراحی لایه‌های سرویس، برند، کاربر و داده</div>
+          </div>
+          <div class="card">
+            <div class="card-title">موتور تولید سرویس</div>
+            <div class="card-meta">تبدیل ایده به سرویس دیجیتال قابل اجرا</div>
+          </div>
+          <div class="card">
+            <div class="card-title">سیستم مدیریت برند</div>
+            <div class="card-meta">ساخت بزرگترین برند اکوسیستمی دیجیتال در جهان</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
         <div class="sec-title">آیا آماده‌ای وارد سوپرسایت شوی؟</div>
         <div class="sec-sub">
           این سیستم‌عامل وب برای متین نظافت یزدی به‌عنوان کریتور هوش مصنوعی طراحی شده است؛  
-          هدف آن ساخت میلیون‌ها سرویس واقعی بر پایهٔ هوش مصنوعی و اکوسیستم MCX است.
+          هدف آن ساخت بزرگترین امپراطوری کریتوری و بزرگترین ارائه‌دهندهٔ رایگان هوش مصنوعی در خاورمیانه است.
         </div>
         <button class="icon-btn" style="width:auto; padding:6px 14px; font-size:13px;" onclick="navigate('dashboard')">
           Let’s Go – ورود به داشبورد
@@ -446,13 +473,13 @@
       <section>
         <div class="sec-title">اطلاعات قانونی و برند</div>
         <div class="sec-sub">
-          تمامی حقوق این سوپرسایت برای اکوسیستم MCX و کریتور هوش مصنوعی متین نظافت یزدی محفوظ است.
+          تمامی حقوق این سوپرسایت برای اکوسیستم MCX و کریتور هوش مصنوعی متین نظافت یزدی محفوظ است.  
           این سیستم‌عامل وب در حال توسعهٔ مداوم است و نسخهٔ فعلی، لایهٔ معرفی و دسترسی اولیه را ارائه می‌دهد.
         </div>
       </section>
     </div>
 
-    <!-- DASHBOARD OS -->
+    <!-- DASHBOARD OS (USER HOME) -->
     <div class="page" id="page-dashboard">
       <section>
         <div class="sec-title">داشبورد کریتور AI</div>
@@ -464,7 +491,7 @@
       </section>
 
       <section>
-        <div class="sec-title">ناوبری سریع</div>
+        <div class="sec-title">ناوبری سریع اکوسیستم</div>
         <div class="tabs">
           <div class="tab" onclick="navigate('landing')">صفحهٔ ورود</div>
           <div class="tab" onclick="navigate('commerce')">موتور تجارت هوشمند</div>
@@ -474,7 +501,7 @@
       </section>
 
       <section>
-        <div class="sec-title">سرویس‌های برتر</div>
+        <div class="sec-title">خدمات برتر اکوسیستم MCX</div>
         <div class="grid">
           <div class="card">
             <div class="card-title">طراحی سوپرسایت هوش مصنوعی</div>
@@ -488,6 +515,10 @@
             <div class="card-title">داشبورد تحلیلی هوشمند</div>
             <div class="card-meta">تحلیل رفتار کاربر، سفارش‌ها و عملکرد سرویس‌ها</div>
           </div>
+          <div class="card">
+            <div class="card-title">سیستم مدیریت سفارشات</div>
+            <div class="card-meta">اتصال به دیتابیس سفارش‌ها و وضعیت‌ها</div>
+          </div>
         </div>
       </section>
 
@@ -495,12 +526,12 @@
         <div class="sec-title">تحلیل کلی و عملکرد</div>
         <div class="sec-sub">
           این بخش در نسخه‌های بعدی به دیتابیس متصل می‌شود و آمار روزانه، هفتگی و ماهانهٔ سرویس‌ها،
-          سفارش‌ها و عملکرد سیستم را نمایش می‌دهد.
+          سفارش‌ها، کاربران و عملکرد سیستم را نمایش می‌دهد.
         </div>
       </section>
     </div>
 
-    <!-- AI COMMERCE ENGINE -->
+    <!-- AI COMMERCE ENGINE (Samples + Shop) -->
     <div class="page" id="page-commerce">
       <section>
         <div class="sec-title">موتور تجارت هوشمند MCX</div>
@@ -533,7 +564,7 @@
       </section>
     </div>
 
-    <!-- USER OS -->
+    <!-- USER OS (User Panel) -->
     <div class="page" id="page-user-os">
       <section>
         <div class="sec-title">پنل کاربر – کریتور هوش مصنوعی</div>
@@ -570,17 +601,19 @@
       </section>
 
       <section>
-        <div class="sec-title">حالت‌ها و امنیت</div>
+        <div class="sec-title">حالت‌ها، دستگاه‌ها و امنیت</div>
         <div class="pill-row">
           <div class="pill">حالت کاربر: کریتور AI</div>
           <div class="pill">کیف پول: در حال راه‌اندازی</div>
           <div class="pill">دستگاه‌های فعال: موبایل + دسکتاپ</div>
           <div class="pill">پنل امنیت: نسخهٔ بعدی</div>
+          <div class="pill">خدمات اضطراری: در حال طراحی</div>
+          <div class="pill">انتخاب تم و حالت کاربر</div>
         </div>
       </section>
     </div>
 
-    <!-- MCX AI ROUTER -->
+    <!-- MCX AI ROUTER (Internal AI Brain) -->
     <div class="page" id="page-ai-router">
       <section>
         <div class="sec-title">هستهٔ هوش مصنوعی MCX – AI Router</div>
@@ -598,7 +631,7 @@
     </div>
   </main>
 
-  <!-- FLOATING ACCESS BUTTON -->
+  <!-- FLOATING ACCESS BUTTON (Global Access System) -->
   <button class="fab" id="fab">⚡</button>
   <div class="fab-menu" id="fab-menu">
     <div class="fab-menu-title">دسترسی سریع MCX</div>
@@ -607,17 +640,24 @@
       <div class="fab-chip">تم: نئونی</div>
       <div class="fab-chip">حالت: کریتور AI</div>
       <div class="fab-chip">کیفیت نمایش: بالا</div>
+      <div class="fab-chip">زمان</div>
+      <div class="fab-chip">IP</div>
+      <div class="fab-chip">پشتیبانی</div>
+      <div class="fab-chip">مراجع</div>
       <div class="fab-chip" onclick="navigate('ai-router')">شروع MCX AI Router</div>
-      <div class="fab-chip" onclick="navigate('commerce')">رفتن به موتور تجارت</div>
-      <div class="fab-chip" onclick="navigate('dashboard')">رفتن به داشبورد</div>
-      <div class="fab-chip" onclick="navigate('user-os')">نمایش پنل کاربر</div>
+      <div class="fab-chip">پخش موسیقی</div>
+      <div class="fab-chip">اعلان‌ها</div>
+      <div class="fab-chip">موقعیت</div>
+      <div class="fab-chip">دانلود / آپلود</div>
+      <div class="fab-chip">وضعیت سفارش‌ها</div>
+      <div class="fab-chip">نمایش سه‌خط / سه‌نقطه</div>
     </div>
   </div>
 
   <!-- FOOTER -->
   <footer>
-    © MCX SuperSite OS – کریتور هوش مصنوعی متین نظافت یزدی  
-    <br>این نسخه، لایهٔ اولیهٔ سیستم‌عامل وب است و برای توسعهٔ بیشتر آماده است.
+    © MCX SuperSite OS – اکوسیستم کریتور هوش مصنوعی متین نظافت یزدی  
+    <br>این نسخه، لایهٔ اولیهٔ سیستم‌عامل وب است و برای توسعهٔ بیشتر و اتصال کامل به دیتابیس آماده است.
   </footer>
 
   <script>
